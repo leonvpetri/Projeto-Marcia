@@ -104,15 +104,6 @@ export default function App() {
           />
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 50, rotate: 10 }}
-          animate={{ opacity: 1, y: 0, rotate: 5 }}
-          transition={{ duration: 1.5, delay: 0.7 }}
-          className="absolute right-[10%] top-[20%] w-64 h-80 rounded-2xl overflow-hidden shadow-2xl hidden lg:block border border-white/50 z-20"
-        >
-          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800" alt="Bruma Facial Calmante" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-        </motion.div>
-
         <div className="relative z-10 text-center px-4 max-w-7xl mx-auto">
           <FadeIn delay={0.2} className="flex items-center justify-center gap-4 mb-8">
             <span className="w-2 h-2 bg-zinc-900 rounded-full animate-pulse"></span>
@@ -377,8 +368,13 @@ export default function App() {
 
           <FadeIn delay={0.4} className="mt-32 flex flex-col md:flex-row justify-between items-center md:items-end border-t border-zinc-100 pt-8 gap-6">
             <div className="text-center md:text-left">
-              <span className="font-bold block text-lg">PURA<span className="font-light text-zinc-400">ESSÊNCIA</span></span>
-              <span className="text-xs text-zinc-400">© 2026 All Rights Reserved.</span>
+              <img 
+                src="/logo.png" 
+                alt="Márcia Ferreira Beauty Consultant" 
+                className="h-24 w-auto mb-4 object-contain"
+                referrerPolicy="no-referrer"
+              />
+              <span className="text-xs text-zinc-400 block">© 2026 All Rights Reserved.</span>
             </div>
             <div className="flex gap-6">
               <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors text-sm font-medium">Instagram</a>
