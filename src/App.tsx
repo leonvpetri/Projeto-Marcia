@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, ArrowDown, ShieldCheck, TrendingUp, 
@@ -66,6 +66,17 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   const navItems = ['PRODUTOS', 'SOBRE', 'SUSTENTABILIDADE', 'CONTATO', 'AGENDAR AGORA'];
 
   return (
@@ -109,29 +120,41 @@ export default function App() {
         {/* Mobile Navigation Overlay */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 right-0 bg-white border-b border-zinc-100 shadow-xl lg:hidden"
-            >
-              <nav className="flex flex-col px-6 py-8 gap-6">
-                {navItems.map((item) => (
-                  <a 
-                    key={item} 
-                    href={`#${item.toLowerCase().replace(' ', '-')}`} 
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-lg font-mono uppercase tracking-widest text-zinc-900 hover:text-zinc-500 transition-colors"
-                  >
-                    {item}
-                  </a>
-                ))}
-                <button className="mt-4 px-5 py-3 bg-zinc-900 text-white text-sm font-mono uppercase tracking-widest rounded-full hover:bg-zinc-800 transition-colors w-full">
-                  Download Kit
-                </button>
-              </nav>
-            </motion.div>
+            <>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="fixed inset-0 bg-white/40 backdrop-blur-md -z-10 lg:hidden"
+                style={{ height: '100vh' }}
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-full right-4 left-4 mt-2 bg-zinc-50 border border-white/60 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] lg:hidden z-50 overflow-hidden"
+              >
+                <nav className="flex flex-col py-4 select-none">
+                  {navItems.map((item) => (
+                    <a 
+                      key={item} 
+                      href={`#${item.toLowerCase().replace(' ', '-')}`} 
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center gap-3 px-6 py-3 mx-2 text-zinc-600 hover:bg-white hover:text-zinc-900 rounded-xl transition-colors text-[11px] font-mono tracking-widest uppercase"
+                    >
+                      {item}
+                    </a>
+                  ))}
+                  <div className="px-4 pt-4 mt-2 border-t border-zinc-200/50">
+                    <button className="w-full flex items-center justify-center gap-2 bg-zinc-900 text-white rounded-xl pt-3.5 pr-4 pb-3.5 pl-4 text-xs font-mono uppercase tracking-widest hover:bg-zinc-800 transition-all shadow-md">
+                      Download Kit
+                    </button>
+                  </div>
+                </nav>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </header>
@@ -423,9 +446,25 @@ export default function App() {
               />
               <span className="text-xs text-zinc-400 block">© 2026 All Rights Reserved.</span>
             </div>
-            <div className="flex gap-6">
-              <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors text-sm font-medium">Instagram</a>
-              <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors text-sm font-medium">Twitter</a>
+            <div className="flex gap-6 items-center">
+              <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors flex items-center gap-2 group">
+                <img 
+                  src="https://github.com/leonvpetri/Imagens/raw/main/assets/logo-instagram.png" 
+                  alt="Instagram" 
+                  className="w-14 h-14 object-contain opacity-60 group-hover:opacity-100 transition-opacity"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="text-sm font-medium">Instagram</span>
+              </a>
+              <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors flex items-center gap-2 group">
+                <img 
+                  src="https://github.com/leonvpetri/Imagens/raw/main/assets/logo-facebook.png" 
+                  alt="Facebook" 
+                  className="w-6 h-6 object-contain opacity-60 group-hover:opacity-100 transition-opacity"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="text-sm font-medium">Facebook</span>
+              </a>
               <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors text-sm font-medium">LinkedIn</a>
             </div>
           </FadeIn>
