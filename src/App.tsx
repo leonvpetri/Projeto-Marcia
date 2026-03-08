@@ -64,33 +64,80 @@ function Modal({ isOpen, onClose, children }: { isOpen: boolean, onClose: () => 
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navItems = ['PRODUTOS', 'SOBRE', 'SUSTENTABILIDADE', 'CONTATO', 'AGENDAR AGORA'];
 
   return (
     <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white">
       {/* Navbar */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-zinc-100">
-        <div className="max-w-[1920px] mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-8 h-8 bg-zinc-900 text-white rounded-full flex items-center justify-center transition-transform group-hover:rotate-90">
-              <Sparkles size={16} />
-            </div>
-            <span className="font-bold tracking-tight text-lg">PURA<span className="font-light text-zinc-400">ESSÊNCIA</span></span>
+        <div className="max-w-[1920px] mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2 group cursor-pointer z-50">
+            <video 
+              src="https://github.com/leonvpetri/Imagens/raw/main/assets/video-marcia.mp4"
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="h-24 md:h-32 w-auto object-contain"
+            />
           </div>
-          <nav className="hidden md:flex items-center gap-8">
-            {['PRODUTOS', 'SOBRE', 'SUSTENTABILIDADE', 'CONTATO', 'AGENDAR AGORA'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`} className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 hover:text-zinc-900 transition-colors">
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-8 justify-center flex-1 px-8">
+            {navItems.map((item) => (
+              <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`} className="text-sm font-mono uppercase tracking-widest text-zinc-500 hover:text-zinc-900 transition-colors whitespace-nowrap">
                 {item}
               </a>
             ))}
           </nav>
-          <button className="px-5 py-2 bg-zinc-900 text-white text-xs font-mono uppercase tracking-widest rounded-full hover:bg-zinc-800 transition-colors">
-            Download Kit
-          </button>
+
+          <div className="flex items-center gap-4 z-50">
+            <button className="hidden md:block px-5 py-2 bg-zinc-900 text-white text-xs font-mono uppercase tracking-widest rounded-full hover:bg-zinc-800 transition-colors">
+              Download Kit
+            </button>
+            <button 
+              className="lg:hidden p-2 text-zinc-900 hover:bg-zinc-100 rounded-full transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Navigation Overlay */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-full left-0 right-0 bg-white border-b border-zinc-100 shadow-xl lg:hidden"
+            >
+              <nav className="flex flex-col px-6 py-8 gap-6">
+                {navItems.map((item) => (
+                  <a 
+                    key={item} 
+                    href={`#${item.toLowerCase().replace(' ', '-')}`} 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-lg font-mono uppercase tracking-widest text-zinc-900 hover:text-zinc-500 transition-colors"
+                  >
+                    {item}
+                  </a>
+                ))}
+                <button className="mt-4 px-5 py-3 bg-zinc-900 text-white text-sm font-mono uppercase tracking-widest rounded-full hover:bg-zinc-800 transition-colors w-full">
+                  Download Kit
+                </button>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen relative flex items-center justify-center overflow-hidden border-b border-zinc-100 bg-grid pt-16">
+      <section id="hero" className="min-h-screen relative flex items-center justify-center overflow-hidden border-b border-zinc-100 bg-grid pt-32 md:pt-48">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <motion.div 
             animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
@@ -369,9 +416,9 @@ export default function App() {
           <FadeIn delay={0.4} className="mt-32 flex flex-col md:flex-row justify-between items-center md:items-end border-t border-zinc-100 pt-8 gap-6">
             <div className="text-center md:text-left">
               <img 
-                src="/logo.png" 
+                src="https://github.com/leonvpetri/Imagens/raw/main/assets/marcia_logo.png" 
                 alt="Márcia Ferreira Beauty Consultant" 
-                className="h-24 w-auto mb-4 object-contain"
+                className="h-24 md:h-32 w-auto object-contain"   
                 referrerPolicy="no-referrer"
               />
               <span className="text-xs text-zinc-400 block">© 2026 All Rights Reserved.</span>
