@@ -91,7 +91,7 @@ export default function App() {
               loop 
               muted 
               playsInline
-              className="h-24 md:h-32 w-auto object-contain"
+              className="h-28 md:h-36 w-auto object-contain"
             />
           </div>
           
@@ -441,7 +441,7 @@ export default function App() {
               <img 
                 src="https://github.com/leonvpetri/Imagens/raw/main/assets/marcia_logo.png" 
                 alt="Márcia Ferreira Beauty Consultant" 
-                className="h-24 md:h-32 w-auto object-contain"   
+                className="h-28 md:h-36 w-auto object-contain"   
                 referrerPolicy="no-referrer"
               />
               <span className="text-xs text-zinc-400 block">© 2026 All Rights Reserved.</span>
