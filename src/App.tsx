@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, ArrowDown, ShieldCheck, TrendingUp, 
@@ -9,7 +9,7 @@ import { FadeIn } from './components/FadeIn';
 import { TextReveal } from './components/TextReveal';
 import { FlashlightCard } from './components/FlashlightCard';
 
-function Tooltip({ children, content }: { children: React.ReactNode, content: string }) {
+function Tooltip({ children, content }: { children: ReactNode, content: string }) {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <div 
@@ -36,7 +36,7 @@ function Tooltip({ children, content }: { children: React.ReactNode, content: st
   );
 }
 
-function Modal({ isOpen, onClose, children }: { isOpen: boolean, onClose: () => void, children: React.ReactNode }) {
+function Modal({ isOpen, onClose, children }: { isOpen: boolean, onClose: () => void, children: ReactNode }) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -181,10 +181,16 @@ export default function App() {
             <span className="w-12 h-[1px] bg-zinc-200"></span>
           </FadeIn>
 
-          <h1 className="text-6xl md:text-[10rem] leading-none font-bold tracking-tighter mb-8 flex flex-col justify-center items-center gap-2">
-            <TextReveal text="PURA" delay={0.3} />
-            <TextReveal text="ESSÊNCIA." outline delay={0.5} />
-          </h1>
+          <div className="flex justify-center mb-12">
+            <video 
+              src="https://github.com/leonvpetri/Imagens/raw/refs/heads/main/assets/marcia-video-hero.mp4"
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full max-w-3xl rounded-[2rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] border border-white/20"
+            />
+          </div>
 
           <FadeIn delay={0.8}>
             <p className="text-lg md:text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-12 leading-relaxed">

@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
-import { ReactNode } from 'react';
+import { ReactNode, Key } from 'react';
 
-export function FadeIn({ children, delay = 0, className = '' }: { children: ReactNode, delay?: number, className?: string }) {
+export function FadeIn({ children, delay = 0, className = '' }: { children: ReactNode, delay?: number, className?: string, key?: Key }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
