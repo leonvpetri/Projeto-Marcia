@@ -229,7 +229,7 @@ export default function App() {
             <FadeIn delay={0.1}>
               <FlashlightCard className="rounded-2xl p-6 h-full flex flex-col">
                 <div className="aspect-[4/3] rounded-xl overflow-hidden mb-6 bg-zinc-100">
-                  <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=800" alt="Sérum Luminosidade" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
+                  <img src="https://br.pinterest.com/pin/754564112614708958/" alt="Sérum Luminosidade" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
                 </div>
                 <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 mb-2">SKINCARE</div>
                 <h4 className="text-xl font-semibold mb-2">Sérum Luminosidade</h4>
@@ -413,11 +413,11 @@ export default function App() {
           <div className="flex w-max animate-marquee items-center opacity-80">
             {[...Array(2)].map((_, i) => (
               <div key={i} className="flex items-center">
-                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">BELEZA NATURAL</span>
-                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8">CRUELTY-FREE</span>
-                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">100% VEGANO</span>
-                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8">SUSTENTÁVEL</span>
-                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">CIÊNCIA PURA</span>
+                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">NATURA</span>
+                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8">AVON</span>
+                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">MARY KAY</span>
+                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8">BOTICÁRIO</span>
+                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">EUDORA</span>
               </div>
             ))}
           </div>
