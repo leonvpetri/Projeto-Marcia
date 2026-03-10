@@ -412,12 +412,21 @@ export default function App() {
         <div className="relative z-10 flex overflow-hidden">
           <div className="flex w-max animate-marquee items-center opacity-80">
             {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex items-center">
-                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">NATURA</span>
-                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8">AVON</span>
-                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">MARY KAY</span>
-                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8">BOTICÁRIO</span>
-                <span className="text-4xl md:text-6xl font-bold tracking-tighter mx-8 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">EUDORA</span>
+              <div key={i} className="flex items-center gap-x-48 px-24">
+                <div className="flex items-center gap-x-12">
+                  <span className="text-4xl md:text-6xl font-bold tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)] whitespace-nowrap">NATURA</span>
+                  <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/Natura_Preto.png" alt="Natura" className="h-12 md:h-16 invert object-contain flex-shrink-0" referrerPolicy="no-referrer" />
+                </div>
+                <div className="flex items-center gap-x-12">
+                  <span className="text-4xl md:text-6xl font-bold tracking-tighter whitespace-nowrap">AVON</span>
+                  <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/Avon_Preto.jfif" alt="Avon" className="h-12 md:h-16 invert object-contain flex-shrink-0" referrerPolicy="no-referrer" />
+                </div>
+                <span className="text-4xl md:text-6xl font-bold tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)] whitespace-nowrap">MARY KAY</span>
+                <span className="text-4xl md:text-6xl font-bold tracking-tighter whitespace-nowrap">BOTICÁRIO</span>
+                <div className="flex items-center gap-x-12">
+                  <span className="text-4xl md:text-6xl font-bold tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)] whitespace-nowrap">EUDORA</span>
+                  <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/Eudora%20Preto.jfif" alt="Eudora" className="h-12 md:h-16 invert object-contain flex-shrink-0" referrerPolicy="no-referrer" />
+                </div>
               </div>
             ))}
           </div>
