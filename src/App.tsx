@@ -331,11 +331,78 @@ export default function App() {
         </div>
       </section>
 
+      {/* Sobre a Consultora Section */}
+      <section id="sobre-consultora" className="py-32 border-b border-zinc-100 bg-white">
+        <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
+          <div className="col-span-1 md:col-span-3">
+            <FadeIn>
+              <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-4">03 / SOBRE</span>
+            </FadeIn>
+          </div>
+          <div className="col-span-1 md:col-span-9">
+            <div className="grid grid-cols-1 md:grid-cols-9 gap-12">
+              <FadeIn delay={0.1} className="col-span-1 md:col-span-4">
+                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+                  <img
+                    src="https://github.com/leonvpetri/Imagens/raw/main/assets/marcia_logo.png"
+                    alt="Márcia Ferreira"
+                    className="w-full rounded-2xl object-cover border border-zinc-100"
+                    referrerPolicy="no-referrer"
+                  />
+                </motion.div>
+              </FadeIn>
+              <div className="col-span-1 md:col-span-5">
+                <FadeIn delay={0.2}>
+                  <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6">
+                    Olá, eu sou a Márcia.
+                  </h2>
+                  <p className="text-lg text-zinc-500 leading-relaxed mb-6">
+                    Sou consultora de beleza apaixonada por transformar a rotina de cuidados das minhas clientes.
+                    Acredito que beleza vai além da aparência — é sobre como você se sente na sua própria pele.
+                  </p>
+                  <p className="text-lg text-zinc-500 leading-relaxed mb-6">
+                    Trabalho com as marcas que mais acredito: Natura, Avon, O Boticário e Mary Kay.
+                    Cada recomendação é feita com cuidado, pensando no seu tipo de pele, rotina e orçamento.
+                  </p>
+                </FadeIn>
+
+                <FadeIn delay={0.3}>
+                  <div className="border-t border-zinc-100 pt-8 mt-8">
+                    <div className="grid grid-cols-3 gap-8">
+                      {[
+                        { number: '+500', label: 'Clientes atendidas' },
+                        { number: '4', label: 'Marcas parceiras' },
+                        { number: '5', label: 'Anos de experiência' },
+                      ].map((stat, i) => (
+                        <FadeIn key={i} delay={0.3 + i * 0.1}>
+                          <div className="text-3xl font-bold tracking-tighter">{stat.number}</div>
+                          <div className="text-xs font-mono uppercase tracking-widest text-zinc-400 mt-1">{stat.label}</div>
+                        </FadeIn>
+                      ))}
+                    </div>
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={0.5} className="mt-10">
+                  <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center overflow-hidden rounded-full p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-lg">
+                    <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]"></span>
+                    <span className="relative flex h-full w-full items-center rounded-full bg-white px-8 py-4 ring-1 ring-zinc-900/5">
+                      <span className="font-mono text-xs font-bold uppercase tracking-widest mr-2">Agendar Consultoria</span>
+                      <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </a>
+                </FadeIn>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Ingredientes Section */}
       <section id="sustentabilidade" className="py-32 border-b border-zinc-100 bg-zinc-50/50">
         <div className="max-w-[1600px] mx-auto px-6">
           <FadeIn className="flex items-center gap-4 mb-16">
-            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">03 / INGREDIENTES</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">05 / INGREDIENTES</span>
             <div className="h-px flex-1 bg-zinc-200"></div>
           </FadeIn>
 
@@ -370,7 +437,7 @@ export default function App() {
         <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
           <div className="col-span-1 md:col-span-3">
             <FadeIn>
-              <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-4">04 / CONTATO</span>
+              <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-4">06 / CONTATO</span>
             </FadeIn>
           </div>
           <div className="col-span-1 md:col-span-9 max-w-2xl">
