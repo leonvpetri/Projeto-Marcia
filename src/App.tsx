@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, ArrowDown, ShieldCheck, TrendingUp, 
   Leaf, Droplet, Sun, Sparkles, Heart, Shield, Search, Menu, X,
-  CheckCircle2, AlertCircle, Info, ChevronRight
+  CheckCircle2, AlertCircle, Info, ChevronRight, Star
 } from 'lucide-react';
 import { FadeIn } from './components/FadeIn';
 import { TextReveal } from './components/TextReveal';
@@ -393,6 +393,44 @@ export default function App() {
                   </a>
                 </FadeIn>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Depoimentos Section */}
+      <section id="depoimentos" className="py-32 border-b border-zinc-100 bg-zinc-50/50">
+        <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
+          <div className="col-span-1 md:col-span-3">
+            <FadeIn>
+              <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-4">04 / DEPOIMENTOS</span>
+            </FadeIn>
+          </div>
+          <div className="col-span-1 md:col-span-9">
+            {/* TODO: Substituir por depoimentos reais */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                { name: 'Ana Paula M.', product: 'Sérum Natura', text: 'A Márcia me indicou o sérum perfeito para minha pele sensível. Resultado incrível em 2 semanas!' },
+                { name: 'Carla Souza', product: 'Kit Avon', text: 'Atendimento super atencioso, ela entendeu exatamente o que eu precisava. Super recomendo!' },
+                { name: 'Fernanda Lima', product: 'Hidratante Boticário', text: 'Compro sempre com a Márcia. Ela sempre tem as melhores dicas e promoções exclusivas.' },
+                { name: 'Juliana Torres', product: 'Mary Kay Skincare', text: 'Fiz uma consultoria completa e aprendi muito sobre minha rotina de skincare. Vale muito!' },
+              ].map((testimonial, i) => (
+                <FadeIn key={i} delay={i * 0.1}>
+                  <FlashlightCard className="rounded-2xl p-8 h-full flex flex-col">
+                    <div className="text-6xl text-zinc-100 font-serif leading-none mb-4">&ldquo;</div>
+                    <p className="text-sm text-zinc-600 leading-relaxed mb-6 flex-grow">{testimonial.text}</p>
+                    <div className="flex gap-0.5 mb-4">
+                      {[...Array(5)].map((_, j) => (
+                        <Star key={j} size={12} className="fill-zinc-900 text-zinc-900" />
+                      ))}
+                    </div>
+                    <div className="border-t border-zinc-100 pt-4">
+                      <div className="text-sm font-semibold">{testimonial.name}</div>
+                      <div className="text-xs font-mono uppercase tracking-widest text-zinc-400">{testimonial.product}</div>
+                    </div>
+                  </FlashlightCard>
+                </FadeIn>
+              ))}
             </div>
           </div>
         </div>
