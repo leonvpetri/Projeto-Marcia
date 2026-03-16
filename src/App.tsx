@@ -63,6 +63,7 @@ function Modal({ isOpen, onClose, children }: { isOpen: boolean, onClose: () => 
 }
 
 export default function App() {
+  const WHATSAPP_NUMBER = "55XXXXXXXXXXX";
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -437,18 +438,21 @@ export default function App() {
       <footer className="bg-white py-24 px-6 relative overflow-hidden">
         <div className="max-w-[1600px] mx-auto text-center">
           <FadeIn>
-            <h2 className="text-4xl md:text-7xl font-bold tracking-tighter mb-12">
-              Ready to build the<br/><span className="text-stroke-outline text-black opacity-30">future?</span>
+            <h2 className="text-4xl md:text-7xl font-bold tracking-tighter mb-6">
+              Beleza que<br/><span className="text-stroke-outline text-black opacity-30">transforma.</span>
             </h2>
+            <p className="text-lg text-zinc-500 mb-12">
+              Consultora oficial Natura · Avon · Boticário · Mary Kay
+            </p>
           </FadeIn>
 
           <FadeIn delay={0.2} className="flex justify-center gap-6">
-            <button className="px-8 py-4 bg-zinc-900 text-white rounded-full font-medium hover:bg-zinc-800 transition-all hover:scale-105 shadow-lg">
-              Start Project
-            </button>
-            <button className="px-8 py-4 bg-white border border-zinc-200 text-zinc-900 rounded-full font-medium hover:border-zinc-900 transition-all hover:scale-105 shadow-sm">
-              Documentation
-            </button>
+            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-zinc-900 text-white rounded-full font-medium hover:bg-zinc-800 transition-all hover:scale-105 shadow-lg">
+              Falar no WhatsApp
+            </a>
+            <a href="#produtos" className="px-8 py-4 bg-white border border-zinc-200 text-zinc-900 rounded-full font-medium hover:border-zinc-900 transition-all hover:scale-105 shadow-sm">
+              Ver Produtos
+            </a>
           </FadeIn>
 
           <FadeIn delay={0.4} className="mt-32 flex flex-col md:flex-row justify-between items-center md:items-end border-t border-zinc-100 pt-8 gap-6">
