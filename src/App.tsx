@@ -63,7 +63,7 @@ function Modal({ isOpen, onClose, children }: { isOpen: boolean, onClose: () => 
 }
 
 export default function App() {
-  const WHATSAPP_NUMBER = "55XXXXXXXXXXX";
+  const WHATSAPP_NUMBER = "553496508057";
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showWhatsApp, setShowWhatsApp] = useState(false);
@@ -353,7 +353,7 @@ export default function App() {
               <FadeIn delay={0.1} className="col-span-1 md:col-span-4">
                 <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
                   <img
-                    src="https://github.com/leonvpetri/Imagens/raw/main/assets/marcia_logo.png"
+                    src="https://github.com/leonvpetri/Imagens/raw/main/assets/Marcia-Quem-Sou.jpg"
                     alt="Márcia Ferreira"
                     className="w-full rounded-2xl object-cover border border-zinc-100"
                     referrerPolicy="no-referrer"
@@ -580,7 +580,7 @@ export default function App() {
               <span className="text-xs text-zinc-400 block">© 2026 All Rights Reserved.</span>
             </div>
             <div className="flex gap-6 items-center">
-              <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors flex items-center gap-2 group">
+              <a href="https://www.instagram.com/cfmarcia?utm_source=qr&igsh=dHV6cDlmb2Q0bGRr" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-zinc-900 transition-colors flex items-center gap-2 group">
                 <img 
                   src="https://github.com/leonvpetri/Imagens/raw/main/assets/logo-instagram.png" 
                   alt="Instagram" 
@@ -589,7 +589,7 @@ export default function App() {
                 />
                 <span className="text-sm font-medium">Instagram</span>
               </a>
-              <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors flex items-center gap-2 group">
+              <a href="https://www.facebook.com/share/1GxQDm4xms/" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-zinc-900 transition-colors flex items-center gap-2 group">
                 <img 
                   src="https://github.com/leonvpetri/Imagens/raw/main/assets/logo-facebook.png" 
                   alt="Facebook" 
