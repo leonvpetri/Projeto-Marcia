@@ -628,7 +628,7 @@ export default function App() {
             Produtos originais com atendimento personalizado. Clique na marca para ver o catálogo completo.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
             {/* Natura */}
             <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
@@ -687,6 +687,20 @@ export default function App() {
             </div>
 
             {/* Eudora */}
+            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+              <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/eudora-4.png" alt="Eudora" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-3">
+                <span className="text-white text-xl font-bold tracking-tight">Eudora</span>
+                <p className="text-zinc-300 text-sm">Perfumaria · Maquiagem · Cuidados</p>
+                <div className="flex gap-2">
+                  <a href="LINK_LOJA_EUDORA" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Eudora." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
+                </div>
+              </div>
+            </div>
+
+            {/* Eudora (Clone) */}
             <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
               <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/eudora-4.png" alt="Eudora" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
