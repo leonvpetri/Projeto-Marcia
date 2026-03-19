@@ -395,11 +395,17 @@ export default function App() {
 
             {/* Natura */}
             <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/Natura-2.png" alt="Natura" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-3">
-                <span className="text-white text-xl font-bold tracking-tight">Natura</span>
-                <p className="text-zinc-300 text-sm">Skincare · Perfumaria · Corpo & Banho</p>
+              <div className="w-full h-64 bg-white overflow-hidden">
+                <img
+                  src="https://github.com/leonvpetri/Imagens/raw/main/assets/Natura-2.png"
+                  alt="Natura"
+                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
+                <span className="text-zinc-900 text-xl font-bold tracking-tight">Natura</span>
+                <p className="text-zinc-500 text-sm">Skincare · Perfumaria · Corpo & Banho</p>
                 <div className="flex gap-2">
                   <a href="LINK_LOJA_NATURA" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Natura." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
@@ -409,25 +415,37 @@ export default function App() {
 
             {/* Avon */}
             <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/avon-2.png" alt="Avon" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-3">
-                <span className="text-white text-xl font-bold tracking-tight">Avon</span>
-                <p className="text-zinc-300 text-sm">Maquiagem · Perfumaria · Cuidados</p>
+              <div className="w-full h-64 bg-white overflow-hidden">
+                <img
+                  src="https://github.com/leonvpetri/Imagens/raw/main/assets/avon-2.png"
+                  alt="Avon"
+                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
+                <span className="text-zinc-900 text-xl font-bold tracking-tight">Avon</span>
+                <p className="text-zinc-500 text-sm">Maquiagem · Perfumaria · Cuidados</p>
                 <div className="flex gap-2">
                   <a href="LINK_LOJA_AVON" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
-                  <a href="https://wa.me/5534965080570?text=Olá! Tenho interesse em produtos Avon." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Avon." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
                 </div>
               </div>
             </div>
 
             {/* O Boticário */}
             <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/boticario-4.png" alt="O Boticário" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-3">
-                <span className="text-white text-xl font-bold tracking-tight">O Boticário</span>
-                <p className="text-zinc-300 text-sm">Perfumaria · Maquiagem · Skincare</p>
+              <div className="w-full h-64 bg-white overflow-hidden">
+                <img
+                  src="https://github.com/leonvpetri/Imagens/raw/main/assets/boticario-4.png"
+                  alt="O Boticário"
+                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
+                <span className="text-zinc-900 text-xl font-bold tracking-tight">O Boticário</span>
+                <p className="text-zinc-500 text-sm">Perfumaria · Maquiagem · Skincare</p>
                 <div className="flex gap-2">
                   <a href="LINK_LOJA_BOTICARIO" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos O Boticário." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
@@ -437,11 +455,17 @@ export default function App() {
 
             {/* Mary Kay */}
             <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/marykay-4.png" alt="Mary Kay" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-3">
-                <span className="text-white text-xl font-bold tracking-tight">Mary Kay</span>
-                <p className="text-zinc-300 text-sm">Skincare · Maquiagem · Fragrâncias</p>
+              <div className="w-full h-64 bg-white overflow-hidden">
+                <img
+                  src="https://github.com/leonvpetri/Imagens/raw/main/assets/marykay-4.png"
+                  alt="Mary Kay"
+                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
+                <span className="text-zinc-900 text-xl font-bold tracking-tight">Mary Kay</span>
+                <p className="text-zinc-500 text-sm">Skincare · Maquiagem · Fragrâncias</p>
                 <div className="flex gap-2">
                   <a href="LINK_LOJA_MARYKAY" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Mary Kay." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
@@ -451,11 +475,17 @@ export default function App() {
 
             {/* Eudora */}
             <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/eudora-4.png" alt="Eudora" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-3">
-                <span className="text-white text-xl font-bold tracking-tight">Eudora</span>
-                <p className="text-zinc-300 text-sm">Perfumaria · Maquiagem · Cuidados</p>
+              <div className="w-full h-64 bg-white overflow-hidden">
+                <img
+                  src="https://github.com/leonvpetri/Imagens/raw/main/assets/eudora-4.png"
+                  alt="Eudora"
+                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
+                <span className="text-zinc-900 text-xl font-bold tracking-tight">Eudora</span>
+                <p className="text-zinc-500 text-sm">Perfumaria · Maquiagem · Cuidados</p>
                 <div className="flex gap-2">
                   <a href="LINK_LOJA_EUDORA" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Eudora." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
@@ -465,11 +495,17 @@ export default function App() {
 
             {/* Eudora (Clone) */}
             <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/eudora-4.png" alt="Eudora" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-3">
-                <span className="text-white text-xl font-bold tracking-tight">Eudora</span>
-                <p className="text-zinc-300 text-sm">Perfumaria · Maquiagem · Cuidados</p>
+              <div className="w-full h-64 bg-white overflow-hidden">
+                <img
+                  src="https://github.com/leonvpetri/Imagens/raw/main/assets/eudora-4.png"
+                  alt="Eudora"
+                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
+                <span className="text-zinc-900 text-xl font-bold tracking-tight">Eudora</span>
+                <p className="text-zinc-500 text-sm">Perfumaria · Maquiagem · Cuidados</p>
                 <div className="flex gap-2">
                   <a href="LINK_LOJA_EUDORA" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Eudora." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
