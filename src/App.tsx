@@ -97,6 +97,13 @@ export default function App() {
     { label: 'DEPOIMENTOS', href: '#depoimentos' },
     { label: 'CONTATO', href: '#contato' },
   ];
+  const marqueeBrands = [
+    { name: 'Natura', src: 'https://raw.githubusercontent.com/leonvpetri/Imagens/main/assets/natura-logo.svg', scale: 1.55 },
+    { name: 'Avon', src: 'https://raw.githubusercontent.com/leonvpetri/Imagens/main/assets/avon_logo.svg', scale: 1 },
+    { name: 'Boticário', src: 'https://raw.githubusercontent.com/leonvpetri/Imagens/main/assets/boticario-logo.svg', scale: 2.6 },
+    { name: 'Mary Kay', src: 'https://raw.githubusercontent.com/leonvpetri/Imagens/main/assets/marykay-logo.svg', scale: 2.3 },
+    { name: 'Eudora', src: 'https://raw.githubusercontent.com/leonvpetri/Imagens/main/assets/eudora-logo.svg', scale: 2.1 },
+  ];
 
   const whatsappHref = (msg: string) =>
     `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
@@ -282,17 +289,17 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
             <div className="col-span-1 md:col-span-3">
               <FadeIn>
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-4">
+                <span className="section-kicker block mb-4">
                   01 / COMO FUNCIONA
                 </span>
               </FadeIn>
             </div>
             <div className="col-span-1 md:col-span-9">
               <FadeIn delay={0.1}>
-                <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6 leading-tight">
+                <h2 className="display-title text-5xl md:text-7xl mb-6 leading-[0.95]">
                   Simples assim.
                 </h2>
-                <p className="text-xl text-zinc-500 leading-relaxed max-w-2xl">
+                <p className="lead-copy text-lg md:text-xl max-w-2xl">
                   Comprar com uma consultora é mais fácil do que você imagina. Em três passos você recebe os melhores produtos direto na sua porta.
                 </p>
               </FadeIn>
@@ -384,10 +391,10 @@ export default function App() {
       {/* ── Catálogo por Marca ── */}
       <section id="catalogo" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 text-center mb-4 tracking-tight">
+          <h2 className="display-title text-4xl md:text-6xl text-center mb-4">
             Marcas que Represento
           </h2>
-          <p className="text-zinc-900 text-center mb-12 max-w-xl mx-auto">
+          <p className="lead-copy text-center mb-12 max-w-xl mx-auto">
             Produtos originais com atendimento personalizado. Clique na marca para ver o catálogo completo.
           </p>
 
@@ -522,17 +529,17 @@ export default function App() {
         <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
           <div className="col-span-1 md:col-span-3">
             <FadeIn>
-              <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-4">03 / FILOSOFIA</span>
+              <span className="section-kicker block mb-4">03 / FILOSOFIA</span>
             </FadeIn>
           </div>
           <div className="col-span-1 md:col-span-9">
             <FadeIn delay={0.1}>
-              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-tight">
+              <h2 className="display-title text-5xl md:text-7xl mb-8 leading-[0.95]">
                 Beleza que respeita<br />a natureza.
               </h2>
-              <p className="text-xl text-zinc-500 leading-relaxed max-w-3xl mb-16">
+              <p className="lead-copy text-lg md:text-xl max-w-3xl mb-16">
                 Cada fórmula é uma convergência entre ciência avançada e os ingredientes mais puros da biodiversidade brasileira. Sem concessões, sem excessos —{' '}
-                <span className="text-zinc-900 font-medium">apenas o essencial.</span>
+                <span className="accent-word">apenas o essencial.</span>
               </p>
             </FadeIn>
 
@@ -563,7 +570,7 @@ export default function App() {
         <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
           <div className="col-span-1 md:col-span-3">
             <FadeIn>
-              <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-4">04 / SOBRE</span>
+              <span className="section-kicker block mb-4">04 / SOBRE</span>
             </FadeIn>
           </div>
           <div className="col-span-1 md:col-span-9">
@@ -580,12 +587,12 @@ export default function App() {
               </FadeIn>
               <div className="col-span-1 md:col-span-5">
                 <FadeIn delay={0.2}>
-                  <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6">Olá, eu sou a Márcia.</h2>
-                  <p className="text-lg text-zinc-500 leading-relaxed mb-6">
+                  <h2 className="display-title text-5xl md:text-6xl mb-6 leading-[0.98]">Olá, eu sou a Márcia.</h2>
+                  <p className="lead-copy text-base md:text-lg mb-6">
                     Sou consultora de beleza apaixonada por transformar a rotina de cuidados das minhas clientes.
                     Acredito que beleza vai além da aparência — é sobre como você se sente na sua própria pele.
                   </p>
-                  <p className="text-lg text-zinc-500 leading-relaxed mb-6">
+                  <p className="lead-copy text-base md:text-lg mb-6">
                     Trabalho com as marcas que mais acredito: Natura, Avon, O Boticário e Mary Kay.
                     Cada recomendação é feita com cuidado, pensando no seu tipo de pele, rotina e orçamento.
                   </p>
@@ -601,7 +608,7 @@ export default function App() {
                       ].map((stat, i) => (
                         <FadeIn key={i} delay={0.3 + i * 0.1}>
                           <div className="text-3xl font-bold tracking-tighter">{stat.number}</div>
-                          <div className="text-xs font-mono uppercase tracking-widest text-zinc-400 mt-1">{stat.label}</div>
+                          <div className="section-meta text-xs mt-1">{stat.label}</div>
                         </FadeIn>
                       ))}
                     </div>
@@ -630,7 +637,7 @@ export default function App() {
         <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
           <div className="col-span-1 md:col-span-3">
             <FadeIn>
-              <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-4">05 / DEPOIMENTOS</span>
+              <span className="section-kicker block mb-4">05 / DEPOIMENTOS</span>
             </FadeIn>
           </div>
           <div className="col-span-1 md:col-span-9">
@@ -652,7 +659,7 @@ export default function App() {
                     </div>
                     <div className="border-t border-zinc-100 pt-4">
                       <div className="text-sm font-semibold">{t.name}</div>
-                      <div className="text-xs font-mono uppercase tracking-widest text-zinc-400">{t.product}</div>
+                      <div className="section-meta text-xs">{t.product}</div>
                     </div>
                   </FlashlightCard>
                 </FadeIn>
@@ -666,7 +673,7 @@ export default function App() {
       <section id="ingredientes" className="py-32 border-b border-zinc-100 bg-zinc-50/50">
         <div className="max-w-[1600px] mx-auto px-6">
           <FadeIn className="flex items-center gap-4 mb-16">
-            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">06 / INGREDIENTES ATIVOS</span>
+            <span className="section-kicker">06 / INGREDIENTES ATIVOS</span>
             <div className="h-px flex-1 bg-zinc-200" />
           </FadeIn>
 
@@ -685,7 +692,7 @@ export default function App() {
                     <div className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center">
                       <Leaf size={16} className="text-zinc-400" />
                     </div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400">{item.subtitle}</span>
+                    <span className="section-meta text-[10px]">{item.subtitle}</span>
                   </div>
                   <h4 className="text-lg font-semibold mb-3">{item.title}</h4>
                   <p className="text-sm text-zinc-500 leading-relaxed flex-grow">{item.desc}</p>
@@ -701,13 +708,13 @@ export default function App() {
         <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
           <div className="col-span-1 md:col-span-3">
             <FadeIn>
-              <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-4">07 / CONTATO</span>
+              <span className="section-kicker block mb-4">07 / CONTATO</span>
             </FadeIn>
           </div>
           <div className="col-span-1 md:col-span-9 max-w-2xl">
             <FadeIn delay={0.1}>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Receba novidades exclusivas</h2>
-              <p className="text-lg text-zinc-500 mb-12">
+              <h2 className="display-title text-5xl md:text-6xl mb-6 leading-[0.98]">Receba novidades exclusivas</h2>
+              <p className="lead-copy text-base md:text-lg mb-12">
                 Seja a primeira a saber sobre lançamentos, promoções e dicas de beleza personalizadas.
               </p>
             </FadeIn>
@@ -717,7 +724,7 @@ export default function App() {
               <button className="w-full px-6 py-4 bg-white border border-zinc-200 text-zinc-900 rounded-full font-bold text-xs uppercase tracking-widest hover:border-zinc-900 transition-colors flex items-center justify-center gap-2">
                 QUERO ME CADASTRAR <ArrowRight size={16} />
               </button>
-              <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 text-center mt-6">
+              <p className="section-meta text-[10px] text-center mt-6">
                 Ao se cadastrar, você concorda com nossa política de privacidade.
               </p>
             </FadeIn>
@@ -726,25 +733,25 @@ export default function App() {
       </section>
 
       {/* ── Marquee ── */}
-      <div className="py-10 md:py-20 bg-zinc-900 text-white relative overflow-hidden">
+      <div className="marquee-shell py-12 md:py-20 relative overflow-hidden">
         <div className="relative z-10 flex overflow-hidden">
-          <div className="flex w-max animate-marquee items-center opacity-80">
-            {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex items-center gap-x-12 md:gap-x-48 px-8 md:px-24">
-                <div className="flex items-center gap-x-6 md:gap-x-12">
-                  <span className="text-2xl md:text-6xl font-bold tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)] whitespace-nowrap">NATURA</span>
-                  <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/Natura_Preto.png" alt="Natura" className="h-6 md:h-12 invert object-contain flex-shrink-0" referrerPolicy="no-referrer" />
-                </div>
-                <div className="flex items-center gap-x-6 md:gap-x-12">
-                  <span className="text-2xl md:text-6xl font-bold tracking-tighter whitespace-nowrap">AVON</span>
-                  <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/Avon_Preto.jfif" alt="Avon" className="h-6 md:h-12 invert object-contain flex-shrink-0" referrerPolicy="no-referrer" />
-                </div>
-                <span className="text-2xl md:text-6xl font-bold tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)] whitespace-nowrap">MARY KAY</span>
-                <span className="text-2xl md:text-6xl font-bold tracking-tighter whitespace-nowrap">BOTICÁRIO</span>
-                <div className="flex items-center gap-x-6 md:gap-x-12">
-                  <span className="text-2xl md:text-6xl font-bold tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)] whitespace-nowrap">EUDORA</span>
-                  <img src="https://github.com/leonvpetri/Imagens/raw/main/assets/Eudora%20Preto.jfif" alt="Eudora" className="h-6 md:h-12 invert object-contain flex-shrink-0" referrerPolicy="no-referrer" />
-                </div>
+          <div className="flex w-max animate-marquee items-center">
+            {[...Array(2)].map((_, groupIndex) => (
+              <div key={groupIndex} className="flex items-center gap-4 md:gap-6 px-4 md:px-10">
+                {marqueeBrands.map((brand) => (
+                  <div
+                    key={`${groupIndex}-${brand.name}`}
+                    className="brand-chip rounded-2xl md:rounded-3xl px-4 py-3 md:px-6 md:py-4 min-w-[180px] md:min-w-[220px] flex items-center justify-center"
+                  >
+                    <img
+                      src={brand.src}
+                      alt={brand.name}
+                      className="h-8 md:h-10 w-auto object-contain"
+                      style={{ transform: `scale(${brand.scale})` }}
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                ))}
               </div>
             ))}
           </div>
