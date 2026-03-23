@@ -1,54 +1,12 @@
-@import "tailwindcss" source(none);
-@source "../index.html";
-@source "./**/*.{js,ts,jsx,tsx}";
+@import "tailwindcss";
 
 @theme {
-  --font-sans: "Manrope", "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Cormorant Garamond", "Bodoni MT", "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-}
-
-:root {
-  --ink-strong: #1f1f22;
-  --ink-soft: #555560;
-  --accent-warm: #c76a18;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
 }
 
 @layer utilities {
-  .section-kicker {
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: #7f7f8a;
-  }
-
-  .section-meta {
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    font-family: var(--font-mono);
-    color: #8a8a95;
-  }
-
-  .display-title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    color: var(--ink-strong);
-    letter-spacing: -0.03em;
-    line-height: 0.95;
-  }
-
-  .lead-copy {
-    color: var(--ink-soft);
-    line-height: 1.75;
-    letter-spacing: 0.01em;
-  }
-
-  .accent-word {
-    color: var(--accent-warm);
-    font-weight: 600;
-  }
-
   .text-stroke-outline {
     color: transparent;
     -webkit-text-stroke: 1px rgba(0, 0, 0, 0.15);
@@ -66,18 +24,6 @@
     background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
     background-size: 20px 20px;
   }
-
-  .marquee-shell {
-    background: linear-gradient(115deg, #f5efe8 0%, #f8f4ef 22%, #e8f4eb 44%, #eef5fd 68%, #f9f0f2 100%);
-    border-top: 1px solid rgba(53, 53, 58, 0.1);
-    border-bottom: 1px solid rgba(53, 53, 58, 0.1);
-  }
-
-  .brand-chip {
-    background: rgba(255, 255, 255, 0.84);
-    border: 1px solid rgba(40, 40, 45, 0.09);
-    backdrop-filter: blur(6px);
-  }
 }
 
 @keyframes marquee {
@@ -85,7 +31,7 @@
   100% { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: marquee 52s linear infinite;
+  animation: marquee 40s linear infinite;
 }
 
 ::-webkit-scrollbar {

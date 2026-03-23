@@ -2,7 +2,8 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, Leaf, Sparkles, Heart, Menu, X, Star,
-  MessageCircle, PackageSearch, Truck, ShoppingBag
+  MessageCircle, PackageSearch, Truck, ShoppingBag,
+  CheckCircle2, Info, AlertCircle
 } from 'lucide-react';
 import { FadeIn } from './components/FadeIn';
 import { FlashlightCard } from './components/FlashlightCard';
@@ -78,6 +79,58 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showWhatsApp, setShowWhatsApp] = useState(false);
+
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'duplicate' | 'error'>('idle');
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!nome.trim() || !email.trim()) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus('loading');
+
+    try {
+      const dataAtual = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+      
+      const response = await fetch('https://artefinal-n8n.gumtcw.easypanel.host/webhook/marcia-leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nome: nome.trim(),
+          email: email.trim(),
+          data: dataAtual
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        setSubmitStatus('success');
+        setNome('');
+        setEmail('');
+      } else if (result.duplicate) {
+        setSubmitStatus('duplicate');
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  useEffect(() => {
+    if (submitStatus === 'success' || submitStatus === 'duplicate') {
+      const timer = setTimeout(() => setSubmitStatus('idle'), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
@@ -414,7 +467,7 @@ export default function App() {
                 <span className="text-zinc-900 text-xl font-bold tracking-tight">Natura</span>
                 <p className="text-zinc-500 text-sm">Skincare · Perfumaria · Corpo & Banho</p>
                 <div className="flex gap-2">
-                  <a href="LINK_LOJA_NATURA" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
+                  <a href="https://www.minhaloja.natura.com/consultoria/marciacunha2403" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Natura." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
                 </div>
               </div>
@@ -454,7 +507,7 @@ export default function App() {
                 <span className="text-zinc-900 text-xl font-bold tracking-tight">O Boticário</span>
                 <p className="text-zinc-500 text-sm">Perfumaria · Maquiagem · Skincare</p>
                 <div className="flex gap-2">
-                  <a href="LINK_LOJA_BOTICARIO" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
+                  <a href="https://minhaloja.grupoboticario.com.br/loja-marciaferreiradacunha-15916127?utm_source=app_divulgar_marca&utm_medium=divulgar_loja_multimarca" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos O Boticário." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
                 </div>
               </div>
@@ -718,15 +771,58 @@ export default function App() {
                 Seja a primeira a saber sobre lançamentos, promoções e dicas de beleza personalizadas.
               </p>
             </FadeIn>
-            <FadeIn delay={0.2} className="space-y-4">
-              <input type="text" placeholder="Seu nome" className="w-full px-6 py-4 rounded-full border border-zinc-200 bg-transparent focus:outline-none focus:border-zinc-900 transition-colors" />
-              <input type="email" placeholder="Seu melhor e-mail" className="w-full px-6 py-4 rounded-full border border-zinc-200 bg-transparent focus:outline-none focus:border-zinc-900 transition-colors" />
-              <button className="w-full px-6 py-4 bg-white border border-zinc-200 text-zinc-900 rounded-full font-bold text-xs uppercase tracking-widest hover:border-zinc-900 transition-colors flex items-center justify-center gap-2">
-                QUERO ME CADASTRAR <ArrowRight size={16} />
-              </button>
-              <p className="section-meta text-[10px] text-center mt-6">
-                Ao se cadastrar, você concorda com nossa política de privacidade.
-              </p>
+            <FadeIn delay={0.2}>
+              <form onSubmit={handleContactSubmit} className="space-y-4">
+                <input 
+                  type="text" 
+                  placeholder="Seu nome" 
+                  required
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-4 rounded-full border border-zinc-200 bg-transparent focus:outline-none focus:border-zinc-900 transition-colors disabled:opacity-50" 
+                />
+                <input 
+                  type="email" 
+                  placeholder="Seu melhor e-mail" 
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-4 rounded-full border border-zinc-200 bg-transparent focus:outline-none focus:border-zinc-900 transition-colors disabled:opacity-50" 
+                />
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-4 bg-white border border-zinc-200 text-zinc-900 rounded-full font-bold text-xs uppercase tracking-widest hover:border-zinc-900 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'ENVIANDO...' : (
+                    <>QUERO ME CADASTRAR <ArrowRight size={16} /></>
+                  )}
+                </button>
+                
+                {submitStatus === 'success' && (
+                  <p className="text-xs font-mono uppercase tracking-widest text-green-600 flex items-center justify-center gap-2 mt-4 text-center">
+                    <CheckCircle2 size={16} /> Cadastro realizado! Em breve você receberá novidades. 🌸
+                  </p>
+                )}
+                
+                {submitStatus === 'duplicate' && (
+                  <p className="text-xs font-mono uppercase tracking-widest text-zinc-500 flex items-center justify-center gap-2 mt-4 text-center">
+                    <Info size={16} /> Você já está na nossa lista! Fique atenta às novidades. 🌸
+                  </p>
+                )}
+
+                {submitStatus === 'error' && (
+                  <p className="text-xs font-mono uppercase tracking-widest text-red-600 flex items-center justify-center gap-2 mt-4 text-center">
+                    <AlertCircle size={16} /> Ops! Algo deu errado. Tente novamente em instantes.
+                  </p>
+                )}
+
+                <p className="section-meta text-[10px] text-center mt-6">
+                  Ao se cadastrar, você concorda com nossa política de privacidade.
+                </p>
+              </form>
             </FadeIn>
           </div>
         </div>
