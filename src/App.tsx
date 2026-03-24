@@ -506,8 +506,19 @@ export default function App() {
                 <span className="text-zinc-900 text-xl font-bold tracking-tight">Natura</span>
                 <p className="text-zinc-500 text-sm">Skincare · Perfumaria · Corpo & Banho</p>
                 <div className="flex gap-2">
-                  <a href="https://www.minhaloja.natura.com/consultoria/marciacunha2403" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
-                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Natura." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
+                  <a
+                    href="https://www.minhaloja.natura.com/consultoria/marciacunha2403"
+                    target="_blank"
+                    rel="noopener"
+                    className="group relative flex-1 flex items-center justify-center overflow-hidden rounded-xl p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-md"
+                  >
+                    <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
+                    <span className="relative flex h-full w-full items-center justify-center rounded-xl bg-white px-4 py-2 ring-1 ring-zinc-900/5">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
+                      <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Natura." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -526,8 +537,19 @@ export default function App() {
                 <span className="text-zinc-900 text-xl font-bold tracking-tight">Avon</span>
                 <p className="text-zinc-500 text-sm">Maquiagem · Perfumaria · Cuidados</p>
                 <div className="flex gap-2">
-                  <a href="https://www.avon.com.br/folheto-digital" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
-                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Avon." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
+                  <a
+                    href="https://www.avon.com.br/folheto-digital"
+                    target="_blank"
+                    rel="noopener"
+                    className="group relative flex-1 flex items-center justify-center overflow-hidden rounded-xl p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-md"
+                  >
+                    <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
+                    <span className="relative flex h-full w-full items-center justify-center rounded-xl bg-white px-4 py-2 ring-1 ring-zinc-900/5">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
+                      <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Avon." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -546,8 +568,19 @@ export default function App() {
                 <span className="text-zinc-900 text-xl font-bold tracking-tight">O Boticário</span>
                 <p className="text-zinc-500 text-sm">Perfumaria · Maquiagem · Skincare</p>
                 <div className="flex gap-2">
-                  <a href="https://minhaloja.grupoboticario.com.br/loja-marciaferreiradacunha-15916127?utm_source=app_divulgar_marca&utm_medium=divulgar_loja_multimarca" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
-                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos O Boticário." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
+                  <a
+                    href="https://minhaloja.grupoboticario.com.br/loja-marciaferreiradacunha-15916127?utm_source=app_divulgar_marca&utm_medium=divulgar_loja_multimarca"
+                    target="_blank"
+                    rel="noopener"
+                    className="group relative flex-1 flex items-center justify-center overflow-hidden rounded-xl p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-md"
+                  >
+                    <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
+                    <span className="relative flex h-full w-full items-center justify-center rounded-xl bg-white px-4 py-2 ring-1 ring-zinc-900/5">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
+                      <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos O Boticário." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -566,8 +599,19 @@ export default function App() {
                 <span className="text-zinc-900 text-xl font-bold tracking-tight">Mary Kay</span>
                 <p className="text-zinc-500 text-sm">Skincare · Maquiagem · Fragrâncias</p>
                 <div className="flex gap-2">
-                  <a href="https://www.marykay.com.br" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
-                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Mary Kay." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
+                  <a
+                    href="https://www.marykay.com.br"
+                    target="_blank"
+                    rel="noopener"
+                    className="group relative flex-1 flex items-center justify-center overflow-hidden rounded-xl p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-md"
+                  >
+                    <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
+                    <span className="relative flex h-full w-full items-center justify-center rounded-xl bg-white px-4 py-2 ring-1 ring-zinc-900/5">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
+                      <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Mary Kay." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -586,8 +630,19 @@ export default function App() {
                 <span className="text-zinc-900 text-xl font-bold tracking-tight">Eudora</span>
                 <p className="text-zinc-500 text-sm">Perfumaria · Maquiagem · Cuidados</p>
                 <div className="flex gap-2">
-                  <a href="https://www.eudora.com.br/" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
-                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Eudora." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
+                  <a
+                    href="https://www.eudora.com.br/"
+                    target="_blank"
+                    rel="noopener"
+                    className="group relative flex-1 flex items-center justify-center overflow-hidden rounded-xl p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-md"
+                  >
+                    <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
+                    <span className="relative flex h-full w-full items-center justify-center rounded-xl bg-white px-4 py-2 ring-1 ring-zinc-900/5">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
+                      <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Eudora." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
                 </div>
               </div>
             </div>
