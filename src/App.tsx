@@ -107,16 +107,55 @@ export default function App() {
         }),
       });
 
-      const result = await response.json();
+      const text = await response.text();
+      console.log("Resposta bruta do N8N:", text);
       
-      if (result.success) {
-        setSubmitStatus('success');
-        setNome('');
-        setEmail('');
-      } else if (result.duplicate) {
-        setSubmitStatus('duplicate');
-      } else {
-        setSubmitStatus('error');
+      try {
+        const result = JSON.parse(text);
+        const data = Array.isArray(result) ? result[0] : result;
+        
+        // Verifica as chaves de forma mais flexível (booleanos ou strings, na raiz ou em data.body)
+        const isSuccess = 
+          data?.success === true || data?.success === "true" || 
+          data?.body?.success === true || data?.body?.success === "true";
+          
+        const isDuplicate = 
+          data?.duplicate === true || data?.duplicate === "true" || 
+          data?.body?.duplicate === true || data?.body?.duplicate === "true";
+        
+        // Fallback: se o N8N retornou uma mensagem de erro em texto que contenha a palavra 'duplicate'
+        const textLower = text.toLowerCase();
+        const hasDuplicateKeyword = textLower.includes('duplicate') || textLower.includes('duplicado') || textLower.includes('já cadastrado');
+
+        if (isDuplicate || hasDuplicateKeyword) {
+          setSubmitStatus('duplicate');
+        } else if (isSuccess) {
+          setSubmitStatus('success');
+          setNome('');
+          setEmail('');
+        } else {
+          console.error("N8N retornou um formato inesperado:", data);
+          // Se a requisição deu 200 OK mas não tem a flag success, assumimos sucesso como fallback
+          if (response.ok) {
+            setSubmitStatus('success');
+            setNome('');
+            setEmail('');
+          } else {
+            setSubmitStatus('error');
+          }
+        }
+      } catch (err) {
+        console.error("Erro ao fazer parse do JSON:", err);
+        // Fallback se o N8N não retornar JSON válido
+        if (text.toLowerCase().includes('duplicate')) {
+          setSubmitStatus('duplicate');
+        } else if (response.ok) {
+          setSubmitStatus('success');
+          setNome('');
+          setEmail('');
+        } else {
+          setSubmitStatus('error');
+        }
       }
     } catch (error) {
       setSubmitStatus('error');
@@ -487,7 +526,7 @@ export default function App() {
                 <span className="text-zinc-900 text-xl font-bold tracking-tight">Avon</span>
                 <p className="text-zinc-500 text-sm">Maquiagem · Perfumaria · Cuidados</p>
                 <div className="flex gap-2">
-                  <a href="LINK_LOJA_AVON" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
+                  <a href="https://avon.com.br" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Avon." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
                 </div>
               </div>
@@ -527,7 +566,7 @@ export default function App() {
                 <span className="text-zinc-900 text-xl font-bold tracking-tight">Mary Kay</span>
                 <p className="text-zinc-500 text-sm">Skincare · Maquiagem · Fragrâncias</p>
                 <div className="flex gap-2">
-                  <a href="LINK_LOJA_MARYKAY" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
+                  <a href="https://www.marykay.com.br" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Mary Kay." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
                 </div>
               </div>
@@ -801,23 +840,69 @@ export default function App() {
                   )}
                 </button>
                 
-                {submitStatus === 'success' && (
-                  <p className="text-xs font-mono uppercase tracking-widest text-green-600 flex items-center justify-center gap-2 mt-4 text-center">
-                    <CheckCircle2 size={16} /> Cadastro realizado! Em breve você receberá novidades. 🌸
-                  </p>
-                )}
-                
-                {submitStatus === 'duplicate' && (
-                  <p className="text-xs font-mono uppercase tracking-widest text-zinc-500 flex items-center justify-center gap-2 mt-4 text-center">
-                    <Info size={16} /> Você já está na nossa lista! Fique atenta às novidades. 🌸
-                  </p>
-                )}
+                <div className="min-h-[80px] flex items-center justify-center mt-4">
+                  <AnimatePresence mode="wait">
+                    {submitStatus === 'success' && (
+                      <motion.p
+                        key="success"
+                        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        className="text-xs font-mono uppercase tracking-widest text-emerald-600 flex items-center justify-center gap-2 text-center"
+                      >
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 15, delay: 0.2 }}
+                        >
+                          <CheckCircle2 size={16} />
+                        </motion.span>
+                        Seu convite para o exclusivo mundo da beleza foi enviado! ✨
+                      </motion.p>
+                    )}
+                    
+                    {submitStatus === 'duplicate' && (
+                      <motion.p
+                        key="duplicate"
+                        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        className="text-xs font-mono uppercase tracking-widest text-zinc-500 flex items-center justify-center gap-2 text-center"
+                      >
+                        <motion.span
+                          initial={{ scale: 0, rotate: -45 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 15, delay: 0.2 }}
+                        >
+                          <Sparkles size={16} />
+                        </motion.span>
+                        Que bom te ver de novo! Você já faz parte do nosso círculo VIP. 🌸
+                      </motion.p>
+                    )}
 
-                {submitStatus === 'error' && (
-                  <p className="text-xs font-mono uppercase tracking-widest text-red-600 flex items-center justify-center gap-2 mt-4 text-center">
-                    <AlertCircle size={16} /> Ops! Algo deu errado. Tente novamente em instantes.
-                  </p>
-                )}
+                    {submitStatus === 'error' && (
+                      <motion.p
+                        key="error"
+                        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        className="text-xs font-mono uppercase tracking-widest text-rose-600 flex items-center justify-center gap-2 text-center"
+                      >
+                        <motion.span
+                          initial={{ scale: 0, x: -10 }}
+                          animate={{ scale: 1, x: 0 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.2 }}
+                        >
+                          <AlertCircle size={16} />
+                        </motion.span>
+                        Ops! Um pequeno contratempo. Tente novamente em instantes? 💄
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
 
                 <p className="section-meta text-[10px] text-center mt-6">
                   Ao se cadastrar, você concorda com nossa política de privacidade.
