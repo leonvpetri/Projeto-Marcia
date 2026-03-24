@@ -526,7 +526,7 @@ export default function App() {
                 <span className="text-zinc-900 text-xl font-bold tracking-tight">Avon</span>
                 <p className="text-zinc-500 text-sm">Maquiagem · Perfumaria · Cuidados</p>
                 <div className="flex gap-2">
-                  <a href="https://avon.com.br" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
+                  <a href="https://www.avon.com.br/folheto-digital" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Avon." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
                 </div>
               </div>
