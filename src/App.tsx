@@ -78,6 +78,34 @@ export default function App() {
   const WHATSAPP_NUMBER = "553496508057";
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const testimonials = [
+    { name: 'Ana Paula M.', product: 'Sérum Natura', text: 'A Márcia me indicou o sérum perfeito para minha pele sensível. Resultado incrível em 2 semanas!' },
+    { name: 'Carla Souza', product: 'Kit Avon', text: 'Atendimento super atencioso, ela entendeu exatamente o que eu precisava. Super recomendo!' },
+    { name: 'Fernanda Lima', product: 'Hidratante Boticário', text: 'Compro sempre com a Márcia. Ela sempre tem as melhores dicas e promoções exclusivas.' },
+    { name: 'Juliana Torres', product: 'Mary Kay Skincare', text: 'Fiz uma consultoria completa e aprendi muito sobre minha rotina de skincare. Vale muito!' },
+  ];
+
+  const handleCatalogCardMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const card = event.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const midX = rect.width / 2;
+    const midY = rect.height / 2;
+    const rotateY = ((x - midX) / midX) * 9;
+    const rotateX = -((y - midY) / midY) * 9;
+    card.style.setProperty('--tilt-x', `${rotateX}deg`);
+    card.style.setProperty('--tilt-y', `${rotateY}deg`);
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  };
+
+  const handleCatalogCardLeave = (event: React.MouseEvent<HTMLDivElement>) => {
+    const card = event.currentTarget;
+    card.style.setProperty('--tilt-x', '0deg');
+    card.style.setProperty('--tilt-y', '0deg');
+  };
   const [showWhatsApp, setShowWhatsApp] = useState(false);
 
   const [nome, setNome] = useState('');
@@ -382,16 +410,16 @@ export default function App() {
             <div className="col-span-1 md:col-span-3">
               <FadeIn>
                 <span className="section-kicker block mb-4">
-                  01 / COMO FUNCIONA
+                  COMO FUNCIONA
                 </span>
               </FadeIn>
             </div>
             <div className="col-span-1 md:col-span-9">
               <FadeIn delay={0.1}>
-                <h2 className="display-title text-5xl md:text-7xl mb-6 leading-[0.95]">
+                <h2 className="display-title section-title text-5xl md:text-7xl mb-6 leading-[0.95]">
                   Simples assim.
                 </h2>
-                <p className="lead-copy text-lg md:text-xl max-w-2xl">
+                <p className="lead-copy section-subtitle text-lg md:text-xl max-w-2xl">
                   Comprar com uma consultora é mais fácil do que você imagina. Em três passos você recebe os melhores produtos direto na sua porta.
                 </p>
               </FadeIn>
@@ -483,40 +511,42 @@ export default function App() {
       {/* ── Catálogo por Marca ── */}
       <section id="catalogo" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="display-title text-4xl md:text-6xl text-center mb-4">
+          <h2 className="display-title section-title text-4xl md:text-6xl text-center mb-4">
             Marcas que Represento
           </h2>
-          <p className="lead-copy text-center mb-12 max-w-xl mx-auto">
+          <p className="lead-copy section-subtitle text-center mb-12 max-w-xl mx-auto">
             Produtos originais com atendimento personalizado. Clique na marca para ver o catálogo completo.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
             {/* Natura */}
-            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <div className="w-full h-64 bg-white overflow-hidden">
+            <div
+              className="catalog-card"
+              style={{ '--accent-rgb': '22, 163, 74' } as React.CSSProperties}
+              onMouseMove={handleCatalogCardMove}
+              onMouseLeave={handleCatalogCardLeave}
+            >
+              <div className="catalog-media">
                 <img
                   src="https://github.com/leonvpetri/Imagens/raw/main/assets/Natura-2.png"
                   alt="Natura"
-                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  className="catalog-media-img"
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
-                <span className="text-zinc-900 text-xl font-bold tracking-tight">Natura</span>
-                <p className="text-zinc-500 text-sm">Skincare · Perfumaria · Corpo & Banho</p>
-                <div className="flex gap-2">
+              <div className="catalog-content">
+                <span className="catalog-title">Natura</span>
+                <p className="catalog-desc">Skincare · Perfumaria · Corpo & Banho</p>
+                <div className="catalog-actions">
                   <a
                     href="https://www.minhaloja.natura.com/consultoria/marciacunha2403"
                     target="_blank"
                     rel="noopener"
-                    className="group relative flex-1 flex items-center justify-center overflow-hidden rounded-xl p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-md"
+                    className="catalog-cta"
                   >
-                    <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
-                    <span className="relative flex h-full w-full items-center justify-center rounded-xl bg-white px-4 py-2 ring-1 ring-zinc-900/5">
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
-                      <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
-                    </span>
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
+                    <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Natura." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
                 </div>
@@ -524,30 +554,32 @@ export default function App() {
             </div>
 
             {/* Avon */}
-            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <div className="w-full h-64 bg-white overflow-hidden">
+            <div
+              className="catalog-card"
+              style={{ '--accent-rgb': '225, 29, 72' } as React.CSSProperties}
+              onMouseMove={handleCatalogCardMove}
+              onMouseLeave={handleCatalogCardLeave}
+            >
+              <div className="catalog-media">
                 <img
                   src="https://github.com/leonvpetri/Imagens/raw/main/assets/avon-2.png"
                   alt="Avon"
-                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  className="catalog-media-img"
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
-                <span className="text-zinc-900 text-xl font-bold tracking-tight">Avon</span>
-                <p className="text-zinc-500 text-sm">Maquiagem · Perfumaria · Cuidados</p>
-                <div className="flex gap-2">
+              <div className="catalog-content">
+                <span className="catalog-title">Avon</span>
+                <p className="catalog-desc">Maquiagem · Perfumaria · Cuidados</p>
+                <div className="catalog-actions">
                   <a
                     href="https://www.avon.com.br/folheto-digital"
                     target="_blank"
                     rel="noopener"
-                    className="group relative flex-1 flex items-center justify-center overflow-hidden rounded-xl p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-md"
+                    className="catalog-cta"
                   >
-                    <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
-                    <span className="relative flex h-full w-full items-center justify-center rounded-xl bg-white px-4 py-2 ring-1 ring-zinc-900/5">
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
-                      <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
-                    </span>
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
+                    <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Avon." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
                 </div>
@@ -555,30 +587,32 @@ export default function App() {
             </div>
 
             {/* O Boticário */}
-            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <div className="w-full h-64 bg-white overflow-hidden">
+            <div
+              className="catalog-card"
+              style={{ '--accent-rgb': '16, 185, 129' } as React.CSSProperties}
+              onMouseMove={handleCatalogCardMove}
+              onMouseLeave={handleCatalogCardLeave}
+            >
+              <div className="catalog-media">
                 <img
                   src="https://github.com/leonvpetri/Imagens/raw/main/assets/boticario-4.png"
                   alt="O Boticário"
-                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  className="catalog-media-img"
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
-                <span className="text-zinc-900 text-xl font-bold tracking-tight">O Boticário</span>
-                <p className="text-zinc-500 text-sm">Perfumaria · Maquiagem · Skincare</p>
-                <div className="flex gap-2">
+              <div className="catalog-content">
+                <span className="catalog-title">O Boticário</span>
+                <p className="catalog-desc">Perfumaria · Maquiagem · Skincare</p>
+                <div className="catalog-actions">
                   <a
                     href="https://minhaloja.grupoboticario.com.br/loja-marciaferreiradacunha-15916127?utm_source=app_divulgar_marca&utm_medium=divulgar_loja_multimarca"
                     target="_blank"
                     rel="noopener"
-                    className="group relative flex-1 flex items-center justify-center overflow-hidden rounded-xl p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-md"
+                    className="catalog-cta"
                   >
-                    <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
-                    <span className="relative flex h-full w-full items-center justify-center rounded-xl bg-white px-4 py-2 ring-1 ring-zinc-900/5">
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
-                      <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
-                    </span>
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
+                    <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos O Boticário." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
                 </div>
@@ -586,30 +620,32 @@ export default function App() {
             </div>
 
             {/* Mary Kay */}
-            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <div className="w-full h-64 bg-white overflow-hidden">
+            <div
+              className="catalog-card"
+              style={{ '--accent-rgb': '236, 72, 153' } as React.CSSProperties}
+              onMouseMove={handleCatalogCardMove}
+              onMouseLeave={handleCatalogCardLeave}
+            >
+              <div className="catalog-media">
                 <img
                   src="https://github.com/leonvpetri/Imagens/raw/main/assets/marykay-4.png"
                   alt="Mary Kay"
-                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  className="catalog-media-img"
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
-                <span className="text-zinc-900 text-xl font-bold tracking-tight">Mary Kay</span>
-                <p className="text-zinc-500 text-sm">Skincare · Maquiagem · Fragrâncias</p>
-                <div className="flex gap-2">
+              <div className="catalog-content">
+                <span className="catalog-title">Mary Kay</span>
+                <p className="catalog-desc">Skincare · Maquiagem · Fragrâncias</p>
+                <div className="catalog-actions">
                   <a
                     href="https://www.marykay.com.br"
                     target="_blank"
                     rel="noopener"
-                    className="group relative flex-1 flex items-center justify-center overflow-hidden rounded-xl p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-md"
+                    className="catalog-cta"
                   >
-                    <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
-                    <span className="relative flex h-full w-full items-center justify-center rounded-xl bg-white px-4 py-2 ring-1 ring-zinc-900/5">
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
-                      <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
-                    </span>
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
+                    <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Mary Kay." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
                 </div>
@@ -617,30 +653,32 @@ export default function App() {
             </div>
 
             {/* Eudora */}
-            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <div className="w-full h-64 bg-white overflow-hidden">
+            <div
+              className="catalog-card"
+              style={{ '--accent-rgb': '250, 204, 21' } as React.CSSProperties}
+              onMouseMove={handleCatalogCardMove}
+              onMouseLeave={handleCatalogCardLeave}
+            >
+              <div className="catalog-media">
                 <img
                   src="https://github.com/leonvpetri/Imagens/raw/main/assets/eudora-4.png"
                   alt="Eudora"
-                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  className="catalog-media-img"
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
-                <span className="text-zinc-900 text-xl font-bold tracking-tight">Eudora</span>
-                <p className="text-zinc-500 text-sm">Perfumaria · Maquiagem · Cuidados</p>
-                <div className="flex gap-2">
+              <div className="catalog-content">
+                <span className="catalog-title">Eudora</span>
+                <p className="catalog-desc">Perfumaria · Maquiagem · Cuidados</p>
+                <div className="catalog-actions">
                   <a
                     href="https://www.eudora.com.br/"
                     target="_blank"
                     rel="noopener"
-                    className="group relative flex-1 flex items-center justify-center overflow-hidden rounded-xl p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-md"
+                    className="catalog-cta"
                   >
-                    <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
-                    <span className="relative flex h-full w-full items-center justify-center rounded-xl bg-white px-4 py-2 ring-1 ring-zinc-900/5">
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
-                      <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
-                    </span>
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
+                    <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Eudora." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
                 </div>
@@ -648,20 +686,28 @@ export default function App() {
             </div>
 
             {/* Eudora (Clone) */}
-            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <div className="w-full h-64 bg-white overflow-hidden">
+            <div
+              className="catalog-card"
+              style={{ '--accent-rgb': '250, 204, 21' } as React.CSSProperties}
+              onMouseMove={handleCatalogCardMove}
+              onMouseLeave={handleCatalogCardLeave}
+            >
+              <div className="catalog-media">
                 <img
                   src="https://github.com/leonvpetri/Imagens/raw/main/assets/eudora-4.png"
                   alt="Eudora"
-                  className="w-full h-full object-contain object-top group-hover:scale-105 transition-transform duration-500"
+                  className="catalog-media-img"
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="p-5 bg-white border border-zinc-100 flex flex-col gap-3">
-                <span className="text-zinc-900 text-xl font-bold tracking-tight">Eudora</span>
-                <p className="text-zinc-500 text-sm">Perfumaria · Maquiagem · Cuidados</p>
-                <div className="flex gap-2">
-                  <a href="LINK_LOJA_EUDORA" target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-white text-zinc-900 font-semibold py-2 rounded-xl hover:bg-zinc-100 transition-colors">Ver Catálogo</a>
+              <div className="catalog-content">
+                <span className="catalog-title">Eudora</span>
+                <p className="catalog-desc">Perfumaria · Maquiagem · Cuidados</p>
+                <div className="catalog-actions">
+                  <a href="LINK_LOJA_EUDORA" target="_blank" rel="noopener" className="catalog-cta">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
+                    <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
+                  </a>
                   <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Eudora." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
                 </div>
               </div>
@@ -676,15 +722,15 @@ export default function App() {
         <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
           <div className="col-span-1 md:col-span-3">
             <FadeIn>
-              <span className="section-kicker block mb-4">03 / FILOSOFIA</span>
+              <span className="section-kicker block mb-4">FILOSOFIA</span>
             </FadeIn>
           </div>
           <div className="col-span-1 md:col-span-9">
             <FadeIn delay={0.1}>
-              <h2 className="display-title text-5xl md:text-7xl mb-8 leading-[0.95]">
+              <h2 className="display-title section-title text-5xl md:text-7xl mb-8 leading-[0.95]">
                 Beleza que respeita<br />a natureza.
               </h2>
-              <p className="lead-copy text-lg md:text-xl max-w-3xl mb-16">
+              <p className="lead-copy section-subtitle text-lg md:text-xl max-w-3xl mb-16">
                 Cada fórmula é uma convergência entre ciência avançada e os ingredientes mais puros da biodiversidade brasileira. Sem concessões, sem excessos —{' '}
                 <span className="accent-word">apenas o essencial.</span>
               </p>
@@ -717,29 +763,35 @@ export default function App() {
         <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
           <div className="col-span-1 md:col-span-3">
             <FadeIn>
-              <span className="section-kicker block mb-4">04 / SOBRE</span>
+              <span className="section-kicker block mb-4">SOBRE</span>
             </FadeIn>
           </div>
           <div className="col-span-1 md:col-span-9">
             <div className="grid grid-cols-1 md:grid-cols-9 gap-12">
               <FadeIn delay={0.1} className="col-span-1 md:col-span-4">
-                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
-                  <img
-                    src="https://github.com/leonvpetri/Imagens/raw/main/assets/Marcia-Quem-Sou.jpg"
-                    alt="Márcia Ferreira"
-                    className="w-full rounded-2xl object-cover border border-zinc-100"
-                    referrerPolicy="no-referrer"
-                  />
-                </motion.div>
+                <div
+                  className="tilt-photo"
+                  onMouseMove={handleCatalogCardMove}
+                  onMouseLeave={handleCatalogCardLeave}
+                >
+                  <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+                    <img
+                      src="https://github.com/leonvpetri/Imagens/raw/main/assets/Marcia-Quem-Sou.jpg"
+                      alt="Márcia Ferreira"
+                      className="w-full rounded-2xl object-cover border border-zinc-100"
+                      referrerPolicy="no-referrer"
+                    />
+                  </motion.div>
+                </div>
               </FadeIn>
               <div className="col-span-1 md:col-span-5">
                 <FadeIn delay={0.2}>
-                  <h2 className="display-title text-5xl md:text-6xl mb-6 leading-[0.98]">Olá, eu sou a Márcia.</h2>
-                  <p className="lead-copy text-base md:text-lg mb-6">
+                  <h2 className="display-title section-title text-5xl md:text-6xl mb-6 leading-[0.98]">Olá, eu sou a Márcia.</h2>
+                  <p className="lead-copy section-subtitle text-base md:text-lg mb-6">
                     Sou consultora de beleza apaixonada por transformar a rotina de cuidados das minhas clientes.
                     Acredito que beleza vai além da aparência — é sobre como você se sente na sua própria pele.
                   </p>
-                  <p className="lead-copy text-base md:text-lg mb-6">
+                  <p className="lead-copy section-subtitle text-base md:text-lg mb-6">
                     Trabalho com as marcas que mais acredito: Natura, Avon, O Boticário e Mary Kay.
                     Cada recomendação é feita com cuidado, pensando no seu tipo de pele, rotina e orçamento.
                   </p>
@@ -781,35 +833,25 @@ export default function App() {
 
       {/* ── Depoimentos ── */}
       <section id="depoimentos" className="py-32 border-b border-zinc-100 bg-zinc-50/50">
-        <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
-          <div className="col-span-1 md:col-span-3">
-            <FadeIn>
-              <span className="section-kicker block mb-4">05 / DEPOIMENTOS</span>
-            </FadeIn>
-          </div>
-          <div className="col-span-1 md:col-span-9">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[
-                { name: 'Ana Paula M.', product: 'Sérum Natura', text: 'A Márcia me indicou o sérum perfeito para minha pele sensível. Resultado incrível em 2 semanas!' },
-                { name: 'Carla Souza', product: 'Kit Avon', text: 'Atendimento super atencioso, ela entendeu exatamente o que eu precisava. Super recomendo!' },
-                { name: 'Fernanda Lima', product: 'Hidratante Boticário', text: 'Compro sempre com a Márcia. Ela sempre tem as melhores dicas e promoções exclusivas.' },
-                { name: 'Juliana Torres', product: 'Mary Kay Skincare', text: 'Fiz uma consultoria completa e aprendi muito sobre minha rotina de skincare. Vale muito!' },
-              ].map((t, i) => (
-                <FadeIn key={i} delay={i * 0.1}>
-                  <FlashlightCard className="rounded-2xl p-8 h-full flex flex-col">
-                    <div className="text-6xl text-zinc-100 font-serif leading-none mb-4">&ldquo;</div>
-                    <p className="text-sm text-zinc-600 leading-relaxed mb-6 flex-grow">{t.text}</p>
-                    <div className="flex gap-0.5 mb-4">
-                      {[...Array(5)].map((_, j) => (
-                        <Star key={j} size={12} className="fill-zinc-900 text-zinc-900" />
-                      ))}
-                    </div>
-                    <div className="border-t border-zinc-100 pt-4">
-                      <div className="text-sm font-semibold">{t.name}</div>
-                      <div className="section-meta text-xs">{t.product}</div>
-                    </div>
-                  </FlashlightCard>
-                </FadeIn>
+        <div className="max-w-[1600px] mx-auto px-6">
+          <FadeIn>
+            <div className="text-center mb-10">
+              <h2 className="display-title section-title text-3xl md:text-5xl">Depoimentos</h2>
+            </div>
+          </FadeIn>
+        </div>
+        <div className="marquee-full">
+          <div className="marquee-container">
+            <div className="marquee-content">
+              {testimonials.concat(testimonials).map((t, i) => (
+                <div key={i} className="testimonial-card">
+                  <div className="testimonial-quote">&ldquo;</div>
+                  <p className="testimonial-text">{t.text}</p>
+                  <div className="border-t border-zinc-100 pt-4">
+                    <div className="testimonial-name">{t.name}</div>
+                    <div className="testimonial-role">{t.product}</div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -820,7 +862,7 @@ export default function App() {
       <section id="ingredientes" className="py-32 border-b border-zinc-100 bg-zinc-50/50">
         <div className="max-w-[1600px] mx-auto px-6">
           <FadeIn className="flex items-center gap-4 mb-16">
-            <span className="section-kicker">06 / INGREDIENTES ATIVOS</span>
+            <span className="section-kicker">INGREDIENTES ATIVOS</span>
             <div className="h-px flex-1 bg-zinc-200" />
           </FadeIn>
 
@@ -851,17 +893,17 @@ export default function App() {
       </section>
 
       {/* ── Contato ── */}
-      <section id="contato" className="py-32 border-b border-zinc-100 bg-white">
+      <section id="contato" className="py-24 border-b border-zinc-100 bg-white">
         <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
           <div className="col-span-1 md:col-span-3">
             <FadeIn>
-              <span className="section-kicker block mb-4">07 / CONTATO</span>
+              <span className="section-kicker block mb-4">CONTATO</span>
             </FadeIn>
           </div>
           <div className="col-span-1 md:col-span-9 max-w-2xl">
             <FadeIn delay={0.1}>
-              <h2 className="display-title text-5xl md:text-6xl mb-6 leading-[0.98]">Receba novidades exclusivas</h2>
-              <p className="lead-copy text-base md:text-lg mb-12">
+              <h2 className="display-title section-title text-5xl md:text-6xl mb-6 leading-[0.98]">Receba novidades exclusivas</h2>
+              <p className="lead-copy section-subtitle text-base md:text-lg mb-12">
                 Seja a primeira a saber sobre lançamentos, promoções e dicas de beleza personalizadas.
               </p>
             </FadeIn>
@@ -895,7 +937,7 @@ export default function App() {
                   )}
                 </button>
                 
-                <div className="min-h-[80px] flex items-center justify-center mt-4">
+                <div className="min-h-[48px] flex items-center justify-center mt-3">
                   <AnimatePresence mode="wait">
                     {submitStatus === 'success' && (
                       <motion.p
@@ -959,7 +1001,7 @@ export default function App() {
                   </AnimatePresence>
                 </div>
 
-                <p className="section-meta text-[10px] text-center mt-6">
+                <p className="section-meta text-[10px] text-center mt-3">
                   Ao se cadastrar, você concorda com nossa política de privacidade.
                 </p>
               </form>
@@ -969,7 +1011,7 @@ export default function App() {
       </section>
 
       {/* ── Marquee ── */}
-      <div className="marquee-shell py-12 md:py-20 relative overflow-hidden">
+      <div className="marquee-shell py-6 md:py-10 relative overflow-hidden">
         <div className="relative z-10 flex overflow-hidden">
           <div className="flex w-max animate-marquee items-center">
             {[...Array(2)].map((_, groupIndex) => (
@@ -995,9 +1037,9 @@ export default function App() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-white py-24 px-6 relative overflow-hidden">
+      <footer className="bg-white py-12 px-6 relative overflow-hidden">
         <div className="max-w-[1600px] mx-auto text-center">
-          <FadeIn delay={0.4} className="mt-32 flex flex-col md:flex-row justify-between items-center md:items-end border-t border-zinc-100 pt-8 gap-6">
+          <FadeIn delay={0.4} className="mt-12 flex flex-col md:flex-row justify-between items-center md:items-end border-t border-zinc-100 pt-8 gap-6">
             <div className="text-center md:text-left">
               <img 
                 src="https://github.com/leonvpetri/Imagens/raw/main/assets/marcia_logo.png" 

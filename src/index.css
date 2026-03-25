@@ -47,3 +47,263 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a1a1aa;
 }
+
+/* Catalog Cards (Section "Catalogo por Marca") */
+.catalog-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  min-height: 400px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+  transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(var(--lift, 0px));
+  transform-style: preserve-3d;
+}
+
+.catalog-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(var(--accent-rgb), 0.12), transparent 45%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.catalog-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 55%, rgba(255,255,255,0.1) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.catalog-card:hover {
+  --lift: -6px;
+  border-color: rgba(15, 23, 42, 0.2);
+  box-shadow: 0 40px 80px rgba(15, 23, 42, 0.18);
+}
+
+.catalog-card:hover::before {
+  opacity: 1;
+}
+
+.catalog-media {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  transform: translateZ(10px);
+  border-radius: 22px 22px 0 0;
+  overflow: hidden;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  z-index: 2;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.catalog-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.8s ease;
+  filter: saturate(1.05);
+}
+
+.catalog-card:hover .catalog-media {
+  transform: translateZ(20px) scale(1.02);
+}
+
+.catalog-card:hover .catalog-media-img {
+  transform: scale(1.05);
+}
+
+.catalog-content {
+  position: relative;
+  z-index: 3;
+  padding: 1rem 1.4rem 1.1rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.catalog-title {
+  font-family: var(--font-serif, "Playfair Display", serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0b1220;
+}
+
+.catalog-desc {
+  color: rgba(15, 23, 42, 0.82);
+  font-size: 0.82rem;
+}
+
+.catalog-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.catalog-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 12px;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.catalog-cta:hover {
+  background: #f8fafc;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.16);
+}
+
+/* About photo tilt */
+.tilt-photo {
+  transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease;
+}
+
+/* Testimonials marquee (light theme) */
+.marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.75rem 0;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: marqueeScrollLight 60s linear infinite;
+}
+
+.marquee-full {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 0 1.5rem;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScrollLight {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 1rem)); }
+}
+
+.testimonial-card {
+  width: 520px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.12);
+}
+
+.testimonial-card:hover {
+  border-color: rgba(15, 23, 42, 0.2);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.18);
+}
+
+.testimonial-quote {
+  font-size: 3.4rem;
+  font-family: var(--font-serif, "Playfair Display", serif);
+  color: rgba(15, 23, 42, 0.35);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.testimonial-text {
+  font-size: 1.05rem;
+  color: rgba(15, 23, 42, 0.9);
+  line-height: 1.6;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0b1220;
+}
+
+.testimonial-role {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(15, 23, 42, 0.65);
+}
+
+@media (max-width: 768px) {
+  .testimonial-card {
+    width: 320px;
+    padding: 1.75rem;
+  }
+}
+
+/* Section titles and subtitles */
+.section-title {
+  font-family: var(--font-serif, "Playfair Display", serif);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #0b1220;
+  line-height: 1.06; /* avoid clipping descenders like "p" */
+  padding-bottom: 0.06em; /* gives room for descenders when using gradient clip */
+  background: linear-gradient(120deg, #0b1220 0%, #0b1220 45%, #9f1239 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.section-subtitle {
+  color: rgba(30, 41, 59, 0.72);
+  font-weight: 400;
+}
+
+
+
+@media (max-width: 768px) {
+  .catalog-card {
+    min-height: 420px;
+  }
+  .catalog-content {
+    max-width: 100%;
+    padding: 2rem;
+  }
+}
