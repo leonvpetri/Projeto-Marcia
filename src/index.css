@@ -4,6 +4,7 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-display: "Oswald", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer utilities {
@@ -56,8 +57,8 @@
   min-height: 400px;
   background: #ffffff;
   color: #0f172a;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(45, 50, 47, 0.1);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
   transition: transform 0.25s ease, box-shadow 0.5s ease, border-color 0.5s ease;
   transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(var(--lift, 0px));
   transform-style: preserve-3d;
@@ -91,8 +92,8 @@
 
 .catalog-card:hover {
   --lift: -6px;
-  border-color: rgba(15, 23, 42, 0.2);
-  box-shadow: 0 40px 80px rgba(15, 23, 42, 0.18);
+  border-color: rgba(45, 50, 47, 0.2);
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.14);
 }
 
 .catalog-card:hover::before {
@@ -164,18 +165,21 @@
   align-items: center;
   justify-content: center;
   flex: 1;
-  background: #ffffff;
-  color: #0f172a;
-  border-radius: 12px;
+  background: #2d322f;
+  color: #ffffff;
+  border-radius: 1px;
   padding: 0.45rem 0.7rem;
-  border: 1px solid rgba(15, 23, 42, 0.1);
+  border: 1px solid rgba(45, 50, 47, 0.1);
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .catalog-cta:hover {
-  background: #f8fafc;
+  background: #3F556B;
   transform: translateY(-1px);
   box-shadow: 0 10px 20px rgba(15, 23, 42, 0.16);
 }
@@ -269,6 +273,11 @@
   color: rgba(15, 23, 42, 0.65);
 }
 
+.product-card {
+  border: 1px solid rgba(45, 50, 47, 0.1);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+}
+
 @media (max-width: 768px) {
   .testimonial-card {
     width: 320px;
@@ -278,22 +287,98 @@
 
 /* Section titles and subtitles */
 .section-title {
-  font-family: var(--font-serif, "Playfair Display", serif);
+  font-family: var(--font-display, "Oswald", sans-serif);
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: #0b1220;
-  line-height: 1.06; /* avoid clipping descenders like "p" */
-  padding-bottom: 0.06em; /* gives room for descenders when using gradient clip */
-  background: linear-gradient(120deg, #0b1220 0%, #0b1220 45%, #9f1239 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
+  text-transform: uppercase;
+  color: #2d322f;
+  line-height: 1.05;
 }
 
 .section-subtitle {
-  color: rgba(30, 41, 59, 0.72);
+  color: rgba(45, 50, 47, 0.7);
   font-weight: 400;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.subtitle-italic {
+  font-family: var(--font-serif, "Playfair Display", serif);
+  font-style: italic;
+}
+
+.section-kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #3F556B;
+}
+
+.hero-title {
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #2d322f;
+}
+
+.hero-subtitle {
+  font-family: var(--font-serif, "Playfair Display", serif);
+  font-style: italic;
+  color: #3F556B;
+}
+
+.cta-btn {
+  background: #2d322f;
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-family: var(--font-sans, "Inter", sans-serif);
+  border-radius: 1px;
+}
+
+.cta-btn:hover {
+  background: #3F556B;
+}
+
+.testimonials-dark .testimonial-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.testimonials-dark .testimonial-text {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.testimonials-dark .testimonial-quote {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.testimonials-dark .testimonial-name {
+  color: #ffffff;
+}
+
+.testimonials-dark .testimonial-role {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.testimonials-dark .section-title {
+  color: #ffffff;
+}
+
+.testimonials-dark .section-kicker {
+  color: #3F556B;
+}
+
+.border-zinc-100 {
+  border-color: rgba(45, 50, 47, 0.1);
 }
 
 

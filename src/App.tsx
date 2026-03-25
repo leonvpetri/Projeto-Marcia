@@ -232,7 +232,7 @@ export default function App() {
     <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white">
 
       {/* ── Navbar ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-100 transition-all duration-300">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-zinc-100 transition-all duration-300">
         <div className="max-w-[1920px] mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#hero" className="flex items-center gap-2 group cursor-pointer z-50">
             <video
@@ -248,7 +248,7 @@ export default function App() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-mono uppercase tracking-widest text-zinc-500 hover:text-zinc-900 transition-colors whitespace-nowrap"
+                className="text-sm font-mono uppercase tracking-widest text-[#2d322f] hover:text-[#3F556B] transition-colors whitespace-nowrap"
               >
                 {item.label}
               </a>
@@ -260,7 +260,7 @@ export default function App() {
               href={whatsappHref('Olá Márcia! Gostaria de agendar uma consultoria. 😊')}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-[#25D366] text-white text-xs font-mono uppercase tracking-widest rounded-full hover:bg-[#20bd5a] transition-colors shadow-md"
+              className="hidden md:flex items-center gap-2 px-5 py-2.5 cta-btn text-xs font-mono transition-colors shadow-md"
             >
               <WhatsAppIcon size={16} />
               Falar comigo
@@ -299,7 +299,7 @@ export default function App() {
                       key={item.label}
                       href={item.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center gap-3 px-6 py-3 mx-2 text-zinc-600 hover:bg-white hover:text-zinc-900 rounded-xl transition-colors text-[11px] font-mono tracking-widest uppercase"
+                      className="flex items-center gap-3 px-6 py-3 mx-2 text-[#2d322f] hover:bg-white hover:text-[#3F556B] rounded-xl transition-colors text-[11px] font-mono tracking-widest uppercase"
                     >
                       {item.label}
                     </a>
@@ -310,7 +310,7 @@ export default function App() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="w-full flex items-center justify-center gap-2 bg-[#25D366] text-white rounded-xl pt-3.5 pr-4 pb-3.5 pl-4 text-xs font-mono uppercase tracking-widest hover:bg-[#20bd5a] transition-all shadow-md"
+                      className="w-full flex items-center justify-center gap-2 cta-btn pt-3.5 pr-4 pb-3.5 pl-4 text-xs font-mono transition-all shadow-md"
                     >
                       <WhatsAppIcon size={16} />
                       Falar comigo no WhatsApp
@@ -324,17 +324,17 @@ export default function App() {
       </header>
 
       {/* ── Hero ── */}
-      <section id="hero" className="min-h-screen relative flex items-center justify-center overflow-hidden border-b border-zinc-100 bg-grid pt-32 md:pt-48">
+      <section id="hero" className="min-h-screen relative flex items-center justify-center overflow-hidden border-b border-zinc-100 bg-[#ebedea] pt-32 md:pt-48">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <motion.div
             animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute top-[10%] left-[15%] w-[600px] h-[600px] bg-gradient-to-tr from-stone-100 to-rose-50 rounded-full blur-[120px] opacity-60"
+            className="absolute top-[10%] left-[15%] w-[600px] h-[600px] bg-gradient-to-tr from-white to-[#ebedea] rounded-full blur-[120px] opacity-70"
           />
           <motion.div
             animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
             transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-            className="absolute bottom-[10%] right-[15%] w-[500px] h-[500px] bg-gradient-to-bl from-stone-100 to-emerald-50 rounded-full blur-[100px] opacity-60"
+            className="absolute bottom-[10%] right-[15%] w-[500px] h-[500px] bg-gradient-to-bl from-white to-[#ebedea] rounded-full blur-[100px] opacity-70"
           />
         </div>
 
@@ -342,8 +342,13 @@ export default function App() {
           {/* Badge */}
           <FadeIn delay={0.2} className="flex items-center justify-center gap-4 mb-8">
             <span className="w-2 h-2 bg-[#25D366] rounded-full animate-pulse"></span>
-            <span className="text-xs font-mono uppercase tracking-[0.3em] text-zinc-400">Consultora Oficial · Natura · Avon · Boticário · Mary Kay</span>
-            <span className="w-12 h-[1px] bg-zinc-200"></span>
+            <span className="text-xs font-mono uppercase tracking-[0.3em] text-[#2d322f]">Consultora Oficial · Natura · Avon · Boticário · Mary Kay</span>
+            <span className="w-12 h-[1px] bg-[#2d322f]/10"></span>
+          </FadeIn>
+
+          <FadeIn delay={0.3} className="mb-8">
+            <h1 className="hero-title text-4xl md:text-6xl mb-3">Cosméticos de alta performance</h1>
+            <p className="hero-subtitle text-lg md:text-xl">A beleza nos detalhes.</p>
           </FadeIn>
 
           {/* Vídeo Hero */}
@@ -356,10 +361,10 @@ export default function App() {
           </div>
 
           <FadeIn delay={0.8}>
-            <p className="text-lg md:text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-lg md:text-xl text-[#2d322f]/80 font-light max-w-2xl mx-auto mb-12 leading-relaxed">
               Cosméticos de alta performance com ingredientes 100% naturais.
               <br />
-              <span className="text-zinc-900 font-medium">Ciência e pureza na sua pele.</span>
+              <span className="text-[#2d322f] font-medium">Ciência e pureza na sua pele.</span>
             </p>
           </FadeIn>
 
@@ -370,7 +375,7 @@ export default function App() {
               href={whatsappHref('Olá Márcia! Gostaria de uma consultoria de beleza. 😊')}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:bg-[#20bd5a] transition-all duration-300 hover:scale-105 shadow-lg shadow-green-200"
+              className="group flex items-center gap-3 px-8 py-4 cta-btn text-xs font-mono transition-all duration-300 hover:scale-105 shadow-lg"
             >
               <WhatsAppIcon size={18} />
               Falar no WhatsApp
@@ -379,25 +384,19 @@ export default function App() {
             {/* ── Explorar Catálogo ── */}
             <a
               href="#catalogo"
-              className="group relative flex items-center justify-center overflow-hidden rounded-full p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-lg"
+              className="group flex items-center justify-center px-8 py-4 cta-btn text-xs font-mono transition-all duration-300 hover:scale-105 shadow-lg"
             >
-              <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
-              <span className="relative flex h-full w-full items-center rounded-full bg-white px-8 py-4 ring-1 ring-zinc-900/5">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
-                <ShoppingBag size={16} className="transition-transform group-hover:translate-x-1" />
-              </span>
+              <span className="mr-2">Ver Catálogo</span>
+              <ShoppingBag size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
 
             {/* ── Nossa Filosofia ── */}
             <a
               href="#sobre-consultora"
-              className="group relative flex items-center justify-center overflow-hidden rounded-full p-[1px] transform hover:scale-105 transition-transform duration-300 shadow-lg"
+              className="group flex items-center justify-center px-8 py-4 cta-btn text-xs font-mono transition-all duration-300 hover:scale-105 shadow-lg"
             >
-              <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#000_360deg)]" />
-              <span className="relative flex h-full w-full items-center rounded-full bg-white px-8 py-4 ring-1 ring-zinc-900/5">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest mr-2">Sobre a Márcia</span>
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </span>
+              <span className="mr-2">Sobre a Márcia</span>
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
           </FadeIn>
         </div>
@@ -406,15 +405,12 @@ export default function App() {
       {/* ── Como Funciona ── */}
       <section id="como-funciona" className="py-32 border-b border-zinc-100 bg-white">
         <div className="max-w-[1600px] mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
-            <div className="col-span-1 md:col-span-3">
-              <FadeIn>
-                <span className="section-kicker block mb-4">
-                  COMO FUNCIONA
-                </span>
-              </FadeIn>
-            </div>
-            <div className="col-span-1 md:col-span-9">
+          <div className="mb-20">
+            <FadeIn className="flex items-center gap-4 mb-6">
+              <span className="section-kicker">COMO FUNCIONA</span>
+              <div className="h-px flex-1 bg-zinc-200" />
+            </FadeIn>
+            <div className="max-w-4xl">
               <FadeIn delay={0.1}>
                 <h2 className="display-title section-title text-5xl md:text-7xl mb-6 leading-[0.95]">
                   Simples assim.
@@ -428,9 +424,6 @@ export default function App() {
 
           {/* Steps */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0 relative">
-            {/* Linha conectora — só desktop */}
-            <div className="hidden md:block absolute top-[3.25rem] left-[calc(16.666%+1rem)] right-[calc(16.666%+1rem)] h-[1px] bg-zinc-200 z-0" />
-
             {[
               {
                 step: '01',
@@ -499,7 +492,7 @@ export default function App() {
               href={whatsappHref('Olá Márcia! Gostaria de uma consultoria gratuita. 😊')}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-shrink-0 flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:bg-[#20bd5a] transition-all hover:scale-105 shadow-lg shadow-green-200"
+              className="flex-shrink-0 flex items-center gap-3 px-8 py-4 cta-btn text-xs font-mono transition-all hover:scale-105 shadow-lg"
             >
               <WhatsAppIcon size={16} />
               Consultoria Gratuita
@@ -509,8 +502,9 @@ export default function App() {
       </section>
 
       {/* ── Catálogo por Marca ── */}
-      <section id="catalogo" className="py-20 bg-white">
+      <section id="catalogo" className="py-20 bg-[#ebedea]">
         <div className="max-w-6xl mx-auto px-4">
+          <span className="section-kicker block text-center mb-3">CATALOGO POR MARCA</span>
           <h2 className="display-title section-title text-4xl md:text-6xl text-center mb-4">
             Marcas que Represento
           </h2>
@@ -548,7 +542,7 @@ export default function App() {
                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
                     <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
-                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Natura." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Natura." target="_blank" rel="noopener" className="flex-1 text-center text-xs py-2 cta-btn flex items-center justify-center">WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -581,7 +575,7 @@ export default function App() {
                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
                     <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
-                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Avon." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Avon." target="_blank" rel="noopener" className="flex-1 text-center text-xs py-2 cta-btn flex items-center justify-center">WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -614,7 +608,7 @@ export default function App() {
                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
                     <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
-                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos O Boticário." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos O Boticário." target="_blank" rel="noopener" className="flex-1 text-center text-xs py-2 cta-btn flex items-center justify-center">WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -647,7 +641,7 @@ export default function App() {
                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
                     <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
-                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Mary Kay." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Mary Kay." target="_blank" rel="noopener" className="flex-1 text-center text-xs py-2 cta-btn flex items-center justify-center">WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -680,7 +674,7 @@ export default function App() {
                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
                     <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
-                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Eudora." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center">WhatsApp</a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Eudora." target="_blank" rel="noopener" className="flex-1 text-center text-xs py-2 cta-btn flex items-center justify-center">WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -708,7 +702,7 @@ export default function App() {
                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest mr-2">Ver Catálogo</span>
                     <ShoppingBag size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
-                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Eudora." target="_blank" rel="noopener" className="flex-1 text-center text-sm bg-green-500 text-white font-semibold py-2 rounded-xl hover:bg-green-600 transition-colors">WhatsApp</a>
+                  <a href="https://wa.me/553496508057?text=Olá! Tenho interesse em produtos Eudora." target="_blank" rel="noopener" className="flex-1 text-center text-xs py-2 cta-btn">WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -719,13 +713,12 @@ export default function App() {
 
       {/* ── Filosofia ── */}
       <section id="filosofia" className="py-32 border-b border-zinc-100 bg-white">
-        <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
-          <div className="col-span-1 md:col-span-3">
-            <FadeIn>
-              <span className="section-kicker block mb-4">FILOSOFIA</span>
-            </FadeIn>
-          </div>
-          <div className="col-span-1 md:col-span-9">
+        <div className="max-w-[1600px] mx-auto px-6">
+          <FadeIn className="flex items-center gap-4 mb-6">
+            <span className="section-kicker">FILOSOFIA</span>
+            <div className="h-px flex-1 bg-zinc-200" />
+          </FadeIn>
+          <div className="max-w-4xl">
             <FadeIn delay={0.1}>
               <h2 className="display-title section-title text-5xl md:text-7xl mb-8 leading-[0.95]">
                 Beleza que respeita<br />a natureza.
@@ -735,39 +728,39 @@ export default function App() {
                 <span className="accent-word">apenas o essencial.</span>
               </p>
             </FadeIn>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-12 border-t border-zinc-100">
-              {[
-                { icon: Leaf, title: '100% Natural', desc: 'Ingredientes extraídos diretamente da flora brasileira. Sem parabenos, sem sulfatos, sem fragrâncias sintéticas.' },
-                { icon: Sparkles, title: 'Sustentável', desc: 'Embalagens recicláveis e processos que respeitam o meio ambiente. Carbono neutro em toda a cadeia.' },
-                { icon: Heart, title: 'Cruelty-Free', desc: 'Nunca testamos em animais. Certificados internacionais de ética e responsabilidade.' },
-              ].map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <FadeIn key={i} delay={0.2 + i * 0.1}>
-                    <div className="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center mb-6">
-                      <Icon size={20} className="text-zinc-700" />
-                    </div>
-                    <h4 className="text-lg font-semibold mb-3">{item.title}</h4>
-                    <p className="text-sm text-zinc-500 leading-relaxed">{item.desc}</p>
-                  </FadeIn>
-                );
-              })}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-12 border-t border-zinc-100">
+            {[
+              { icon: Leaf, title: '100% Natural', desc: 'Ingredientes extraídos diretamente da flora brasileira. Sem parabenos, sem sulfatos, sem fragrâncias sintéticas.' },
+              { icon: Sparkles, title: 'Sustentável', desc: 'Embalagens recicláveis e processos que respeitam o meio ambiente. Carbono neutro em toda a cadeia.' },
+              { icon: Heart, title: 'Cruelty-Free', desc: 'Nunca testamos em animais. Certificados internacionais de ética e responsabilidade.' },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <FadeIn key={i} delay={0.2 + i * 0.1}>
+                  <div className="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center mb-6">
+                    <Icon size={20} className="text-zinc-700" />
+                  </div>
+                  <h4 className="text-lg font-semibold mb-3">{item.title}</h4>
+                  <p className="text-sm text-zinc-500 leading-relaxed">{item.desc}</p>
+                </FadeIn>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ── Sobre a Consultora ── */}
       <section id="sobre-consultora" className="py-32 border-b border-zinc-100 bg-white">
-        <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
-          <div className="col-span-1 md:col-span-3">
-            <FadeIn>
-              <span className="section-kicker block mb-4">SOBRE</span>
+        <div className="max-w-[1600px] mx-auto px-6">
+          <div className="max-w-4xl mb-12">
+            <FadeIn delay={0.1}>
+              <h2 className="display-title section-title text-5xl md:text-6xl mb-6 leading-[0.98]">Olá, eu sou a Márcia.</h2>
             </FadeIn>
           </div>
-          <div className="col-span-1 md:col-span-9">
-            <div className="grid grid-cols-1 md:grid-cols-9 gap-12">
+
+          <div className="grid grid-cols-1 md:grid-cols-9 gap-12">
               <FadeIn delay={0.1} className="col-span-1 md:col-span-4">
                 <div
                   className="tilt-photo"
@@ -786,7 +779,6 @@ export default function App() {
               </FadeIn>
               <div className="col-span-1 md:col-span-5">
                 <FadeIn delay={0.2}>
-                  <h2 className="display-title section-title text-5xl md:text-6xl mb-6 leading-[0.98]">Olá, eu sou a Márcia.</h2>
                   <p className="lead-copy section-subtitle text-base md:text-lg mb-6">
                     Sou consultora de beleza apaixonada por transformar a rotina de cuidados das minhas clientes.
                     Acredito que beleza vai além da aparência — é sobre como você se sente na sua própria pele.
@@ -819,7 +811,7 @@ export default function App() {
                     href={whatsappHref('Olá Márcia! Gostaria de agendar uma consultoria. 😊')}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:bg-[#20bd5a] transition-all hover:scale-105 shadow-lg shadow-green-200"
+                    className="group inline-flex items-center gap-3 px-8 py-4 cta-btn text-xs font-mono transition-all hover:scale-105 shadow-lg"
                   >
                     <WhatsAppIcon size={16} />
                     Agendar Consultoria
@@ -827,15 +819,15 @@ export default function App() {
                 </FadeIn>
               </div>
             </div>
-          </div>
         </div>
       </section>
 
       {/* ── Depoimentos ── */}
-      <section id="depoimentos" className="py-32 border-b border-zinc-100 bg-zinc-50/50">
+      <section id="depoimentos" className="py-32 border-b border-zinc-100 bg-[#2d322f] text-white testimonials-dark">
         <div className="max-w-[1600px] mx-auto px-6">
           <FadeIn>
             <div className="text-center mb-10">
+              <span className="section-kicker block mb-3">RELATOS REAIS</span>
               <h2 className="display-title section-title text-3xl md:text-5xl">Depoimentos</h2>
             </div>
           </FadeIn>
@@ -859,7 +851,7 @@ export default function App() {
       </section>
 
       {/* ── Ingredientes ── */}
-      <section id="ingredientes" className="py-32 border-b border-zinc-100 bg-zinc-50/50">
+      <section id="ingredientes" className="py-32 border-b border-zinc-100 bg-[#ebedea]">
         <div className="max-w-[1600px] mx-auto px-6">
           <FadeIn className="flex items-center gap-4 mb-16">
             <span className="section-kicker">INGREDIENTES ATIVOS</span>
@@ -876,7 +868,7 @@ export default function App() {
               { title: 'Bakuchiol', subtitle: 'BABCHI', desc: 'Alternativa vegetal ao retinol. Anti-idade sem irritação.' },
             ].map((item, i) => (
               <FadeIn key={i} delay={i * 0.1}>
-                <div className="bg-white border border-zinc-100 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+                <div className="product-card bg-white rounded-2xl p-8 transition-shadow duration-300 h-full flex flex-col">
                   <div className="flex justify-between items-start mb-6">
                     <div className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center">
                       <Leaf size={16} className="text-zinc-400" />
@@ -894,15 +886,10 @@ export default function App() {
 
       {/* ── Contato ── */}
       <section id="contato" className="py-24 border-b border-zinc-100 bg-white">
-        <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
-          <div className="col-span-1 md:col-span-3">
-            <FadeIn>
-              <span className="section-kicker block mb-4">CONTATO</span>
-            </FadeIn>
-          </div>
-          <div className="col-span-1 md:col-span-9 max-w-2xl">
+        <div className="max-w-[1600px] mx-auto px-6">
+          <div className="max-w-2xl">
             <FadeIn delay={0.1}>
-              <h2 className="display-title section-title text-5xl md:text-6xl mb-6 leading-[0.98]">Receba novidades exclusivas</h2>
+                  <h2 className="display-title section-title text-5xl md:text-6xl mb-6 leading-[0.98]">Receba novidades exclusivas</h2>
               <p className="lead-copy section-subtitle text-base md:text-lg mb-12">
                 Seja a primeira a saber sobre lançamentos, promoções e dicas de beleza personalizadas.
               </p>
@@ -930,7 +917,7 @@ export default function App() {
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-6 py-4 bg-white border border-zinc-200 text-zinc-900 rounded-full font-bold text-xs uppercase tracking-widest hover:border-zinc-900 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-6 py-4 cta-btn text-xs font-mono transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'ENVIANDO...' : (
                     <>QUERO ME CADASTRAR <ArrowRight size={16} /></>
@@ -1011,7 +998,7 @@ export default function App() {
       </section>
 
       {/* ── Marquee ── */}
-      <div className="marquee-shell py-6 md:py-10 relative overflow-hidden">
+      <div className="marquee-shell pt-6 pb-2 md:pt-10 md:pb-4 relative overflow-hidden">
         <div className="relative z-10 flex overflow-hidden">
           <div className="flex w-max animate-marquee items-center">
             {[...Array(2)].map((_, groupIndex) => (
@@ -1037,10 +1024,11 @@ export default function App() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-white py-12 px-6 relative overflow-hidden">
-        <div className="max-w-[1600px] mx-auto text-center">
-          <FadeIn delay={0.4} className="mt-12 flex flex-col md:flex-row justify-between items-center md:items-end border-t border-zinc-100 pt-8 gap-6">
-            <div className="text-center md:text-left">
+      <footer className="bg-white pt-2 pb-10 px-6 relative overflow-hidden">
+        <div className="max-w-[1920px] mx-auto">
+          <div className="border-t border-zinc-100 pt-6">
+            <FadeIn delay={0.4} className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+            <div className="text-left">
               <img 
                 src="https://github.com/leonvpetri/Imagens/raw/main/assets/marcia_logo.png" 
                 alt="Márcia Ferreira Beauty Consultant" 
@@ -1049,7 +1037,7 @@ export default function App() {
               />
               <span className="text-xs text-zinc-400 block">© 2026 All Rights Reserved.</span>
             </div>
-            <div className="flex gap-6 items-center">
+            <div className="flex gap-6 items-center md:justify-end w-full md:w-auto">
               <a href="https://www.instagram.com/cfmarcia?utm_source=qr&igsh=dHV6cDlmb2Q0bGRr" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-zinc-900 transition-colors flex items-center gap-2 group">
                 <img 
                   src="https://github.com/leonvpetri/Imagens/raw/main/assets/logo-instagram.png" 
@@ -1071,6 +1059,7 @@ export default function App() {
               <a href="#" className="text-zinc-400 hover:text-zinc-900 transition-colors text-sm font-medium">LinkedIn</a>
             </div>
           </FadeIn>
+          </div>
         </div>
       </footer>
 
@@ -1106,7 +1095,7 @@ export default function App() {
                 href={whatsappHref('Olá Márcia! Gostaria de uma consultoria. 😊')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center rounded-full p-4 bg-[#25D366] hover:bg-[#20bd5a] shadow-2xl transition-colors"
+                className="flex items-center justify-center p-4 cta-btn shadow-2xl transition-colors"
               >
                 <WhatsAppIcon size={28} />
               </a>
