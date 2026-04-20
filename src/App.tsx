@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { FadeIn } from './components/FadeIn';
 import { FlashlightCard } from './components/FlashlightCard';
+import { ChatRAG } from './components/ChatRAG';
 
 // ─── WhatsApp SVG Icon ────────────────────────────────────────────────────────
 function WhatsAppIcon({ size = 28 }: { size?: number }) {
@@ -215,6 +216,7 @@ export default function App() {
     { label: 'COMO FUNCIONA', href: '#como-funciona' },
     { label: 'SOBRE', href: '#sobre-consultora' },
     { label: 'DEPOIMENTOS', href: '#depoimentos' },
+    { label: 'REVISTA DIGITAL', href: '#revista-digital' },
     { label: 'CONTATO', href: '#contato' },
   ];
   const marqueeBrands = [
@@ -850,39 +852,8 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── Ingredientes ── */}
-      <section id="ingredientes" className="py-32 border-b border-zinc-100 bg-[#ebedea]">
-        <div className="max-w-[1600px] mx-auto px-6">
-          <FadeIn className="flex items-center gap-4 mb-16">
-            <span className="section-kicker">INGREDIENTES ATIVOS</span>
-            <div className="h-px flex-1 bg-zinc-200" />
-          </FadeIn>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: 'Ácido Hialurônico', subtitle: 'VEGETAL', desc: 'Hidratação profunda com retenção molecular de água na epiderme.' },
-              { title: 'Vitamina C', subtitle: 'CAMU-CAMU', desc: 'Antioxidante de alta potência para luminosidade e uniformização.' },
-              { title: 'Esqualano', subtitle: 'OLIVA', desc: 'Emoliente biocompatível que restaura a barreira lipídica natural.' },
-              { title: 'Rosa Mosqueta', subtitle: 'PATAGÔNIA', desc: 'Regeneração celular com ácidos graxos essenciais e retinol natural.' },
-              { title: 'Niacinamida', subtitle: 'BIOTECNOLOGIA', desc: 'Controle de oleosidade e minimização de poros com ação anti-inflamatória.' },
-              { title: 'Bakuchiol', subtitle: 'BABCHI', desc: 'Alternativa vegetal ao retinol. Anti-idade sem irritação.' },
-            ].map((item, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <div className="product-card bg-white rounded-2xl p-8 transition-shadow duration-300 h-full flex flex-col">
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center">
-                      <Leaf size={16} className="text-zinc-400" />
-                    </div>
-                    <span className="section-meta text-[10px]">{item.subtitle}</span>
-                  </div>
-                  <h4 className="text-lg font-semibold mb-3">{item.title}</h4>
-                  <p className="text-sm text-zinc-500 leading-relaxed flex-grow">{item.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── Revista Digital (RAG) ── */}
+      <ChatRAG />
 
       {/* ── Contato ── */}
       <section id="contato" className="py-24 border-b border-zinc-100 bg-white">
