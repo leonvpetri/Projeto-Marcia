@@ -8,33 +8,48 @@ type Message = {
   role: 'user' | 'agent';
   text: string;
   page?: number;
+  brand?: string;
+  product_code?: string;
 };
 
-const WEBHOOK_URL = 'https://artefinal-n8n.gumtcw.easypanel.host/webhook/rag';
-const FLIPBOOK_URL = 'https://heyzine.com/flip-book/f6ec899e22.html';
+const WEBHOOK_URL = 'https://artefinal-rag2-marcia.gumtcw.easypanel.host/search';
+const FLIPBOOKS: Record<string, string> = {
+  natura:    'https://artefinal-rag2-marcia.gumtcw.easypanel.host/natura/natura-abril-2026.htm',
+  boticario: 'https://artefinal-rag2-marcia.gumtcw.easypanel.host/boticario/catalogo_boticario_abril.htm',
+};
 
 export function ChatRAG() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       role: 'agent',
-      text: 'Olá! Sou sua consultora virtual. Experimente perguntar sobre nossa linha "Essencial", "Chronos" ou "Todo Dia".',
+      text: 'Que bom que você me chamou! 🌸 Pergunte sobre produtos Natura ou Boticário informando a marca. Ex: "Sérum Chronos Natura informações" ou "Perfume Malbec Boticário informações"',
       page: 1,
     },
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [currentBrand, setCurrentBrand] = useState('natura');
   const [showPdf, setShowPdf] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [webhookUrl, setWebhookUrl] = useState(WEBHOOK_URL);
-  const [flipbookUrl, setFlipbookUrl] = useState(FLIPBOOK_URL);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const flipbookRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading]);
+
+  // No mobile, rola até o flipbook quando ele aparece pela primeira vez
+  useEffect(() => {
+    if (showPdf && window.innerWidth < 1024) {
+      setTimeout(() => {
+        flipbookRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+  }, [showPdf]);
 
   const handleSendMessage = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -51,18 +66,18 @@ export function ChatRAG() {
     setIsLoading(true);
 
     try {
-      let responseData: { text: string; page?: number };
+      let responseData: { text: string; page?: number; pagina?: number; brand?: string; codigo?: string; arquivo?: string; imagem_url?: string; flipbook_url?: string };
 
       const res = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          message: userMessage.text,
+          message: inputValue.trim(),
           sessionId: 'react-rag-' + Math.random().toString(36).substring(2, 9),
         }),
       });
 
-      if (!res.ok) throw new Error('Falha na conexão com o n8n');
+      if (!res.ok) throw new Error('Falha na conexão com o servidor');
       const rawData = await res.json();
 
       const dataObj = Array.isArray(rawData) ? rawData[0] : rawData;
@@ -82,6 +97,11 @@ export function ChatRAG() {
         responseData = { text: JSON.stringify(dataObj || rawData), page: 1 };
       }
 
+      // Mapeia pagina → page
+      if (responseData.pagina) {
+        responseData.page = responseData.pagina;
+      }
+
       if (responseData.page && responseData.page > 0) {
         responseData.page = parseInt(responseData.page.toString(), 10);
       }
@@ -91,9 +111,13 @@ export function ChatRAG() {
         role: 'agent',
         text: responseData.text || 'Ops, recebi uma resposta vazia do servidor.',
         page: responseData.page,
+        product_code: responseData.codigo,
       };
 
       setMessages((prev) => [...prev, agentMessage]);
+      if (responseData.brand) {
+        setCurrentBrand(responseData.brand.toLowerCase());
+      }
       if (responseData.page && responseData.page > 0) {
         setCurrentPage(responseData.page);
         setShowPdf(true);
@@ -104,7 +128,7 @@ export function ChatRAG() {
         {
           id: (Date.now() + 1).toString(),
           role: 'agent',
-          text: 'Erro de conexão. Verifique se o Webhook do n8n está ativo.',
+          text: 'Ops! Parece que nossa consultora teve um momento de distração. 😅 Pode repetir sua pergunta? Às vezes ela precisa de uma segundinha para se concentrar!',
           page: currentPage,
         },
       ]);
@@ -133,10 +157,10 @@ export function ChatRAG() {
 
         {/* Chat + Flipbook widget */}
         <FadeIn delay={0.15}>
-          <div className="flex flex-col lg:flex-row rounded-3xl overflow-hidden border border-zinc-200 shadow-2xl shadow-zinc-900/10" style={{ height: 'clamp(520px, 70vh, 720px)' }}>
+          <div className="flex flex-col lg:flex-row rounded-3xl overflow-hidden border border-zinc-200 shadow-2xl shadow-zinc-900/10 lg:h-[clamp(520px,70vh,720px)]">
 
             {/* Left — Chat (40%) */}
-            <div className={`flex flex-col w-full lg:w-[40%] lg:min-w-[360px] border-r border-[#EBE4DC] bg-white z-20 shrink-0 transition-all duration-500 ${showPdf ? 'h-[45%] lg:h-full' : 'h-full'}`}>
+            <div className={`flex flex-col w-full lg:w-[40%] lg:min-w-[360px] border-r border-[#EBE4DC] bg-white z-20 shrink-0 transition-all duration-500 ${showPdf ? 'h-[480px] lg:h-full' : 'h-[480px] lg:h-full'}`}>
 
               {/* Chat header */}
               <header className="flex flex-col px-6 py-4 border-b border-[#EBE4DC] bg-white shrink-0">
@@ -178,16 +202,6 @@ export function ChatRAG() {
                           placeholder="https://seu-n8n.com/webhook/..."
                           className="w-full px-3 py-2 bg-white border border-[#EBE4DC] rounded-lg text-xs focus:outline-none focus:border-orange-400 transition-all font-mono shadow-sm"
                         />
-                        <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1.5 mt-3">
-                          HeyZine Flipbook URL
-                        </label>
-                        <input
-                          type="url"
-                          value={flipbookUrl}
-                          onChange={(e) => setFlipbookUrl(e.target.value)}
-                          placeholder="https://heyzine.com/flip-book/..."
-                          className="w-full px-3 py-2 bg-white border border-[#EBE4DC] rounded-lg text-xs focus:outline-none focus:border-orange-400 transition-all font-mono shadow-sm"
-                        />
                       </div>
                     </motion.div>
                   )}
@@ -213,7 +227,12 @@ export function ChatRAG() {
                           {message.page !== undefined && message.page > 0 && message.role === 'agent' && (
                             <span className="inline-flex items-center gap-1 mt-2 text-[10px] uppercase tracking-wider font-bold text-orange-700 bg-orange-50/80 px-2 py-1 rounded border border-orange-100/50">
                               <Presentation size={11} />
-                              Pág: {message.page}
+                              {currentBrand === 'boticario' ? 'Boticário' : 'Natura'} · Pág: {message.page}
+                            </span>
+                          )}
+                          {message.product_code && (
+                            <span className="inline-flex items-center gap-1 mt-1 text-[10px] uppercase tracking-wider font-bold text-zinc-600 bg-zinc-50 px-2 py-1 rounded border border-zinc-100">
+                              🔍 Código: {message.product_code}
                             </span>
                           )}
                         </div>
@@ -263,14 +282,14 @@ export function ChatRAG() {
                 </form>
                 <div className="text-center mt-3">
                   <span className="inline-flex items-center justify-center gap-1 text-[10px] text-emerald-600 uppercase tracking-[0.1em] font-bold bg-emerald-50 px-2 py-0.5 rounded">
-                    <CheckCircle2 size={11} strokeWidth={2.5} /> Sincronizado com n8n
+                    ● NATURA · BOTICÁRIO
                   </span>
                 </div>
               </footer>
             </div>
 
             {/* Right — Flipbook (60%) */}
-            <div className={`${showPdf ? 'flex' : 'hidden'} lg:flex flex-col flex-1 bg-[#F9F7F5] border-t lg:border-t-0 lg:border-l border-[#EBE4DC] relative overflow-hidden`}>
+            <div ref={flipbookRef} className={`${showPdf ? 'flex' : 'hidden'} lg:flex flex-col lg:flex-1 bg-[#F9F7F5] border-t lg:border-t-0 lg:border-l border-[#EBE4DC] relative overflow-hidden h-[420px] lg:h-auto`}>
               <AnimatePresence mode="wait">
                 {!showPdf ? (
                   <motion.div
@@ -299,7 +318,9 @@ export function ChatRAG() {
                     <header className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-5 py-3 bg-gradient-to-b from-[#1A1A1A]/80 to-transparent pointer-events-none">
                       <div className="flex items-center gap-2 text-zinc-200 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 pointer-events-auto shadow-xl">
                         <FileText size={15} className="text-orange-400/90" />
-                        <span className="font-medium text-xs tracking-wide uppercase">Revista_Ciclo_Atual</span>
+                        <span className="font-medium text-xs tracking-wide uppercase">
+                          {currentBrand === 'boticario' ? 'Catálogo_Boticário' : 'Revista_Natura'}
+                        </span>
                       </div>
                       <div className="px-3 py-1.5 bg-black/40 backdrop-blur-md text-orange-50 flex items-center gap-1.5 rounded-xl border border-white/10 pointer-events-auto shadow-xl">
                         <span className="text-[10px] uppercase tracking-widest font-bold opacity-80">Pág:</span>
@@ -308,7 +329,7 @@ export function ChatRAG() {
                     </header>
                     <main className="flex-1 relative w-full h-full bg-[#1A1A1A]">
                       <iframe
-                        src={`${flipbookUrl}#page/${currentPage}`}
+                        src={`${FLIPBOOKS[currentBrand] ?? FLIPBOOKS['natura']}#page/${currentPage}`}
                         allowFullScreen
                         className="w-full h-full border-none transition-opacity duration-300"
                         title="Revista Flipbook 3D"
