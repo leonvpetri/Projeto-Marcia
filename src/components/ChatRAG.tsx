@@ -223,7 +223,12 @@ export function ChatRAG() {
                           {message.role === 'user' ? <User size={13} /> : <Sparkles size={13} />}
                         </div>
                         <div className={`px-4 py-3 shadow-sm text-sm leading-relaxed ${message.role === 'user' ? 'bg-zinc-800 text-white rounded-2xl rounded-tr-sm shadow-md' : 'bg-white border border-[#F0EBE6] text-zinc-700 rounded-2xl rounded-tl-sm shadow-sm'}`}>
-                          {message.text}
+                          {message.text.split('\n').map((line, i) => (
+                            <span key={i}>
+                              {line}
+                              <br />
+                            </span>
+                          ))}
                           {message.page !== undefined && message.page > 0 && message.role === 'agent' && (
                             <span className="inline-flex items-center gap-1 mt-2 text-[10px] uppercase tracking-wider font-bold text-orange-700 bg-orange-50/80 px-2 py-1 rounded border border-orange-100/50">
                               <Presentation size={11} />
