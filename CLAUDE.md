@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture
 
-Single-page React app (`src/App.tsx`) composed of stacked full-width sections identified by anchor IDs (`#hero`, `#produtos`, `#sobre`, `#sobre-consultora`, `#depoimentos`, `#sustentabilidade`, `#contato`). No router — navigation is scroll-based.
+Single-page React app (`src/App.tsx`) composed of stacked full-width sections identified by anchor IDs (`#hero`, `#produtos`, `#sobre`, `#sobre-consultora`, `#depoimentos`, `#revista-digital`, `#sustentabilidade`, `#contato`). No router — navigation is scroll-based.
 
 ### Section layout convention
 - All sections: `py-32 border-b border-zinc-100`
@@ -23,6 +23,7 @@ Single-page React app (`src/App.tsx`) composed of stacked full-width sections id
 - **FadeIn.tsx** — viewport-triggered fade+blur animation; props: `children`, `delay` (0–1 s), `className`
 - **FlashlightCard.tsx** — interactive card with mouse-tracking radial gradient; props: `children`, `className`
 - **TextReveal.tsx** — text reveal animation; props: `children`, `delay`
+- **ChatRAG.tsx** — seção `#revista-digital` completa: chat RAG (40%) + flipbook (60%); backend RAG e flipbook URLs fixos nas constantes do topo do arquivo; paleta laranja/âmbar
 
 ### Inline components (defined in `App.tsx`)
 - **Tooltip** (~line 22) — motion-animated tooltip with spring transitions; used on the floating WhatsApp button
@@ -60,33 +61,31 @@ Use `motion/react` (Framer Motion v12) for all motion components. `FadeIn` wraps
 - Path alias `@/` maps to the project root
 - HMR is disabled when `DISABLE_HMR` env var is set (for AI Studio compatibility)
 
-## Integração SaaS RAG — Catálogo Inteligente
+### ChatRAG — Catálogo Inteligente (Revista Digital)
+- Componente: `src/components/ChatRAG.tsx`
+- Backend RAG: `https://artefinal-rag2-marcia.gumtcw.easypanel.host/search`
+  (servidor Express Node.js hospedado na VPS via Easypanel)
+- Flipbooks:
+  - Natura: `https://artefinal-rag2-marcia.gumtcw.easypanel.host/natura/natura-abril-2026.htm`
+  - Boticário: `https://artefinal-rag2-marcia.gumtcw.easypanel.host/boticario/catalogo_boticario_abril.htm`
+- Layout: 40% chat / 60% flipbook, altura `clamp(520px, 70vh, 720px)`
+- O servidor retorna `{ text, pagina, codigo, brand, arquivo, imagem_url, flipbook_url }`
+  - `pagina` é mapeado para `page` no componente
+  - `brand` determina qual flipbook abrir (natura ou boticario)
+  - `codigo` exibe badge 🔍 Código: XXXXX na mensagem do agente
+- Tipo Message: `{ id, role, text, page?, brand?, product_code? }`
+- Paleta laranja/âmbar (`from-orange-400 to-amber-600`)
+- Badge rodapé: "● NATURA · BOTICÁRIO"
+- Detecção de marca feita no servidor — usuário deve informar
+  "natura" ou "boticário" na mensagem
 
-### Objetivo
-Substituir a seção `#ingredientes` por uma seção `#revista-digital` contendo
-o chat RAG integrado ao flipbook do catálogo Natura.
-
-### Referência do componente
-O componente ChatRAG deve ser extraído de:
-https://github.com/leonvpetri/rag_saas_marcia — src/App.tsx
-
-Salvar como: `src/components/ChatRAG.tsx`
-
-### Configurações já definidas
-- Webhook RAG: `https://artefinal-n8n.gumtcw.easypanel.host/webhook/rag`
-- Flipbook: `https://heyzine.com/flip-book/f6ec899e22.html`
-
-### Design
-- Paleta do chat: laranja/âmbar (from-orange-400 to-amber-600) — manter do SaaS original
-- Título/wrapper da seção: seguir padrão do design system (section-kicker + display-title + lead-copy)
-- Envolver em FadeIn com delay consistente com as demais seções
-- Layout: 40% chat / 60% flipbook (igual ao SaaS original)
-
-### Alterações no App.tsx
-1. Remover seção `#ingredientes` completamente
-2. Importar e renderizar `<ChatRAG />` no lugar
-3. Atualizar navItems: substituir `{ label: 'INGREDIENTES', href: '#ingredientes' }`
-   por `{ label: 'REVISTA DIGITAL', href: '#revista-digital' }`
-
-### Known placeholders
-- Second Eudora card (~linha 682): substituir `LINK_LOJA_EUDORA` pela URL real da loja
+### Infraestrutura RAG (projeto separado: RAG2_Marcia)
+- Repositório: https://github.com/leonvpetri/RAG2_MARCIA
+- Deploy: VPS Easypanel — artefinal-rag2-marcia.gumtcw.easypanel.host
+- Supabase projeto: rag2_marcia (São Paulo)
+  - Tabela catalogo_boticario: 199 páginas vetorizadas
+  - Tabela catalogo_natura: 164 páginas vetorizadas
+  - Embedding: Gemini Embedding 2 (768 dims) + OCR Gemini 3.1 Flash Lite
+- Flipbooks MyFlipbook hospedados na VPS em /app/public/
+  - IMPORTANTE: após cada deploy no Easypanel, copiar imagens
+    manualmente via docker cp para o container
