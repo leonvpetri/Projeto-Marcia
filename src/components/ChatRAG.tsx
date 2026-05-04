@@ -23,7 +23,7 @@ export function ChatRAG() {
     {
       id: '1',
       role: 'agent',
-      text: 'Que bom que você me chamou! 🌸 Pergunte sobre produtos Natura ou Boticário informando a marca. Ex: "Sérum Chronos Natura informações" ou "Perfume Malbec Boticário informações"',
+      text: 'Que bom que você me chamou! 🌸\nSou sua consultora virtual e estou aqui para ajudar você a encontrar os produtos que combinam com seu cuidado e bem-estar.\n\nPosso te ajudar a:\n• Buscar produtos Natura ou Boticário por nome\n• Mostrar preço, descrição e onde encontrar no catálogo\n• Indicar o código para localização rápida no catálogo\n\nAh, e lembre-se: confira sempre o que eu te mostrar antes de finalizar sua escolha! 😊\n\nVocê está buscando um produto Natura ou Boticário?',
       page: 1,
     },
   ]);
